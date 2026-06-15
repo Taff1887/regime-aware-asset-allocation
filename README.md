@@ -25,6 +25,8 @@ Static vs regime-aware strategies, 15-asset global universe, 2005–2026, net of
 2. **60/40 is ~95% one (equity) risk factor** — "balanced" by capital, not by risk.
 3. **Regime awareness pays as risk management, not alpha.** A transparent de-risking overlay cut max drawdown ~26% (and the GFC drawdown from −20.5% to −11.3%, COVID to −1.5%), but the Sharpe improvement is **not statistically significant** — an honest result the report does not overstate.
 
+> **Full-period robustness (1990–2026, report §12.7):** rebuilt on real long-history fund proxies, the conclusions hold over 36 years and seven crises. 60/40's Sharpe edge narrows and it carries **~double the drawdown** (−32.5% vs ~−16%); on **Calmar (return per unit of drawdown) every diversified strategy beats 60/40**. The dot-com bust is diversification's finest hour (60/40 −23% vs risk-parity −1%).
+
 <p align="center">
   <img src="figures/phase3/06_crisis_correlations.png" width="48%">
   <img src="figures/phase2/03_portfolio_factor_risk.png" width="48%">

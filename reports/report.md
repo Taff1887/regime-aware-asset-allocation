@@ -375,6 +375,8 @@ The engine is strictly point-in-time. At each quarter-end, weights are a functio
 
 ### 12.1 Headline performance
 
+> **Full-period view:** this sub-section uses the highest-quality ETF proxies, whose common sample is 2005–2026. For a backtest spanning **1990–2026** on long-history fund proxies — confirming the conclusions over a longer, multi-crisis sample — see **§12.7**.
+
 ![Equity curves](../figures/phase3/01_equity_curves.png)
 
 *Figure 12.1 — Cumulative growth of $1, net of costs (log scale). Regime strategies dashed.*
@@ -542,6 +544,47 @@ The fixed-income playbook that emerges is sharp and economically intuitive:
 *Figure 12.12 — Sharpe ratio of each fixed-income type by regime (1980–2026).*
 
 **Implication for a fixed-income-heavy (e.g. insurance) portfolio:** the dominant regime lever is **duration**, not credit; **credit and high yield should be trimmed going into Stagflation**, not added; **global (unhedged) exposure is a strong-dollar/Overheating risk**; and **no nominal bond — including TIPS — reliably hedges a stagflationary equity drawdown**, which is the structural case for a real-asset (commodity/gold) sleeve alongside the bond book.
+
+### 12.7 Long-history backtest (1990–2026)
+
+To address the question *"do the portfolio conclusions hold over the entire period, not just post-2008?"*, we rebuild the full strategy set on **long-history, low-cost mutual-fund proxies** (real total-return NAVs) so the backtest spans **1990–2026 (437 months)**. US/international equity, long IG credit and high yield reach back to 1980; long Treasury, the US aggregate, global bonds and REITs to 1986; the short/intermediate Treasury and intermediate-credit sleeves to 1991–93; and the real-asset sleeves (TIPS, commodities, gold) enter point-in-time via the cleanest available series (2000/2004/2006). Two honest data caveats: some funds are actively managed (returns are net of fees and carry modest manager effects), and one commodity fund (PCRAX) was discarded for vendor data errors and replaced with the DBC ETF; a guard drops any impossible (>100%) monthly return.
+
+![Long-history equity curves](../figures/long_history/01_long_equity_curves.png)
+
+*Figure 12.13 — Cumulative growth of $1, 1990–2026 (net of costs, log scale). Regime strategies dashed.*
+
+| Strategy | Ann. return | Ann. vol | Sharpe | Max DD | **Calmar** | Turnover (q) |
+|---|---:|---:|---:|---:|---:|---:|
+| 60/40 | 8.8% | 9.3% | **0.65** | **−32.5%** | 0.27 |0.0% |
+| Equal-Weight | 6.6% | 7.2% | 0.53 | −24.9% | 0.26 | 0.3% |
+| Inverse-Vol | 6.0% | 5.8% | 0.56 | −16.9% | 0.36 | 0.7% |
+| ERC (Risk Parity) | 6.0% | 5.7% | 0.56 | −16.4% | 0.37 | 0.8% |
+| Min-Variance | 4.9% | 3.8% | 0.54 | **−12.1%** | **0.41** | 2.5% |
+| Max-Diversification | 5.6% | 5.0% | 0.55 | −15.0% | 0.37 | 2.6% |
+| Max-Sharpe (MVO) | 5.8% | 4.9% | 0.62 | −16.1% | 0.36 | 3.5% |
+| Regime ERC | 6.1% | 5.8% | 0.56 | −16.3% | 0.37 | 1.3% |
+| Regime Max-Sharpe | 5.8% | 5.3% | 0.57 | −16.1% | 0.36 | 7.6% |
+| **Regime Risk Overlay** | 5.9% | 5.4% | **0.57** | −16.6% | 0.35 | 2.0% |
+
+The longer sample sharpens — and largely confirms — the §12.1 story:
+
+- **60/40 still posts the highest raw Sharpe (0.65), but the gap narrows** versus the 2005–2026 sample, and it carries **by far the worst drawdown (−32.5%, roughly double the risk-based strategies' ~−16%)**. On **Calmar (return per unit of drawdown) — the metric an insurer cares about — every diversified strategy beats 60/40** (Min-Variance 0.41, risk-parity/regime 0.37 vs 60/40's 0.27).
+- **Regime conditioning of returns still disappoints** and the **overlay still modestly improves on its risk-parity base** (0.57 vs 0.56) — consistent with §12.1.
+
+![Long-history crisis drawdowns](../figures/long_history/03_long_crisis_drawdowns.png)
+
+*Figure 12.14 — Drawdown through seven crises, 1990–2026.*
+
+The extended crisis set — now including the **1990 recession, the 1994 bond crash and the 2000–02 dot-com bust** — is where the case is most vivid:
+
+| Strategy | 1990 | 1994 | Dot-com 00–02 | GFC | Euro 11 | COVID | Inflation 22 |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| 60/40 | −8.4% | −6.2% | **−23.2%** | **−32.5%** | −8.2% | −11.6% | −20.2% |
+| ERC (Risk Parity) | −8.2% | −5.5% | −1.3% | −16.1% | −1.9% | −4.3% | −15.8% |
+| **Regime Risk Overlay** | −5.1% | −5.8% | −2.5% | **−11.8%** | −1.9% | **−2.1%** | −15.8% |
+| Regime Max-Sharpe | −7.2% | −6.4% | −5.0% | −16.1% | −2.4% | −4.2% | **−10.5%** |
+
+The **dot-com bust** is diversification's finest hour (60/40 −23% vs risk-parity −1%); the **overlay roughly halves the GFC and COVID drawdowns again**; and in the **2022 inflation shock the return-rotating Regime Max-Sharpe did best (−10.5%)** by tilting toward commodities, while the overlay — de-risking into bonds that also fell — gave no extra help (the §12.3 caveat, reconfirmed over a longer history). The **1994 bond crash** hit every strategy similarly (~−5–6%), a reminder that a duration shock is hard to diversify within fixed income.
 
 ---
 
