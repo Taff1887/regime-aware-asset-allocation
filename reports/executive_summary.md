@@ -27,6 +27,8 @@ Determine whether conditioning strategic asset allocation on the **macroeconomic
 
 5. **Regime awareness pays as risk management, not alpha.** Conditioning the covariance on the regime adds nothing; conditioning *return forecasts* hurts. But a transparent **de-risking overlay cut maximum drawdown ~26%** (−15.1% vs −20.5% base) and reduced the **GFC drawdown to −11.3%** (vs 60/40's −29.5%) and **COVID to −1.5%** — with low turnover and robustness to costs. The Sharpe gain, however, is **not statistically significant** on 21 years of data.
 
+6. **Fixed-income deep dive (1980–2026, real long-history funds) — for a bond-heavy book.** Over 45 years including the Great Inflation, the **bond–equity correlation is highest in Stagflation** (US aggregate +0.41, long credit +0.43) — the hedge failure is a *regime feature, not a 2022 fluke*. The dominant fixed-income lever is **duration** (long beats short ~+8%/yr in Goldilocks, −4%/yr in Overheating), **credit and high yield lag in Stagflation** (not defensive), **unhedged global bonds lag US by ~9%/yr in Overheating** (strong dollar), and **TIPS hedge inflation surprises but not the 2022-style real-rate shock**. No nominal bond reliably hedges a stagflationary equity drawdown — the structural case for a real-asset sleeve alongside the bond book.
+
 ## Portfolio implications
 
 - The diversifier that protects equities **depends on the regime**: bonds in disinflationary environments, **real assets (gold, commodities) in inflationary ones**. A static allocation reliant on bonds for ballast is implicitly betting on a disinflationary world.

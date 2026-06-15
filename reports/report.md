@@ -498,6 +498,51 @@ The Sharpe confidence intervals are wide (e.g. 60/40 0.71 [0.26, 1.22]; Regime R
 
 **None of the Sharpe differences is statistically significant.** Twenty-one years of monthly data is simply not enough to distinguish these strategies on risk-adjusted return. The overlay's **drawdown reduction**, by contrast, is consistent and economically meaningful, and its turnover is low enough to survive realistic costs (§13). The honest conclusion: regime awareness earns its keep through **risk control and better assumptions**, not through a demonstrable Sharpe edge.
 
+### 12.6 Fixed-income deep dive (extended history, 1980–2026)
+
+Because many institutional books — insurers in particular — are dominated by fixed income, we extend the study to **~1980–2026 using real long-history bond mutual funds** (actual total-return NAVs; not simulated) and classify regimes on macro data back to 1950. This adds the **Great Inflation and Volcker disinflation of the early 1980s** — the most valuable missing regime for a bond study — and lets us characterise *types* of fixed income across regimes. The funds span US Treasuries by duration (short/intermediate/long), the US aggregate, intermediate and long IG credit, high yield, unhedged global ex-US bonds, TIPS, and an equity reference. (Caveats: fund returns are net of small expense ratios; the global fund is unhedged so it carries FX; TIPS exist only from 2000.)
+
+**The bond–equity hedge fails in inflation regimes — across 45 years, not just in 2022.**
+
+![Long-sample bond-equity correlation](../figures/fixed_income/05_fi_bond_equity_corr.png)
+
+*Figure 12.10 — Rolling 36-month bond–equity correlation (left) and by regime (right), 1980s–2026.*
+
+| Bond type vs equity | Goldilocks | Overheating | Stagflation | Recession |
+|---|---:|---:|---:|---:|
+| US Aggregate | +0.06 | +0.05 | **+0.41** | +0.07 |
+| Long Treasury | −0.17 | +0.11 | **+0.18** | −0.08 |
+| Long IG credit | +0.06 | +0.26 | **+0.43** | +0.18 |
+
+The rolling correlation was **positive in the early-1990s inflation tail, deeply negative through the 2000s–2010s disinflation (when 60/40 thrived), and turned sharply positive again from 2022.** Stagflation is unambiguously where bonds stop hedging equities — confirming, on a long real-data sample, that the 2022 experience was a regime feature, not an anomaly. Credit-heavy aggregates fare worst (correlation +0.41) because credit co-moves with equities.
+
+**When does each fixed-income "trade" win?** Annualised outperformance of A over B by regime:
+
+![FI spreads by regime](../figures/fixed_income/03_fi_spreads_by_regime.png)
+
+*Figure 12.11 — Annualised outperformance (A − B) of key fixed-income choices by regime.*
+
+| Trade (A − B) | Goldilocks | Overheating | Stagflation | Recession |
+|---|---:|---:|---:|---:|
+| Long − Short Treasury (duration) | **+7.9%** | −4.0% | +4.0% | −0.7% |
+| Long credit − Long Treasury | −3.0% | +0.3% | −1.1% | **+3.1%** |
+| High yield − IG credit | −1.6% | +0.8% | −2.9% | **+3.2%** |
+| Global ex-US − US aggregate | −1.0% | **−8.8%** | −3.4% | +2.4% |
+| TIPS − nominal Treasury | −0.7% | **+4.2%** | −2.9% | +2.5% |
+
+The fixed-income playbook that emerges is sharp and economically intuitive:
+
+- **Duration** is the dominant fixed-income decision: long bonds beat short by ~8%/yr in **Goldilocks** (disinflation) and lag by ~4%/yr in **Overheating** (rising rates). Duration timing matters far more than credit selection.
+- **Credit (IG and HY) beats government in Recession/recovery** (spread compression as growth troughs and rebounds) and **lags in Stagflation** (spreads widen, defaults rise) — credit is *not* a defensive asset in inflation shocks.
+- **US bonds crush unhedged global bonds in Overheating** (−8.8%/yr for global), driven by the strong-dollar regime — directly consistent with the currency factor's information ratio of 1.45 in Overheating (§9.2). Unhedged global bonds only out-earn US in disinflationary Recession.
+- **TIPS beat nominals when inflation rises with growth (Overheating, +4.2%)** but **underperform in Stagflation (−2.9%)** — the hard 2022 lesson: TIPS hedge inflation surprises but not the real-rate shock from aggressive hiking.
+
+![FI Sharpe by regime](../figures/fixed_income/01_fi_sharpe_by_regime.png)
+
+*Figure 12.12 — Sharpe ratio of each fixed-income type by regime (1980–2026).*
+
+**Implication for a fixed-income-heavy (e.g. insurance) portfolio:** the dominant regime lever is **duration**, not credit; **credit and high yield should be trimmed going into Stagflation**, not added; **global (unhedged) exposure is a strong-dollar/Overheating risk**; and **no nominal bond — including TIPS — reliably hedges a stagflationary equity drawdown**, which is the structural case for a real-asset (commodity/gold) sleeve alongside the bond book.
+
 ---
 
 ## 13. Sensitivity analysis

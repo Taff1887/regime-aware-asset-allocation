@@ -30,6 +30,17 @@ Static vs regime-aware strategies, 15-asset global universe, 2005–2026, net of
   <img src="figures/phase2/03_portfolio_factor_risk.png" width="48%">
 </p>
 
+### Fixed-income deep dive (1980–2026, real long-history data)
+
+A companion analysis extends to **~1980–2026** using real long-history bond mutual-fund total returns and macro back to 1950 — capturing the **Great Inflation/Volcker era** so the fixed-income conclusions rest on real inflation-regime data, not just 2022. Key results (`reports/fixed_income/`, report §12.6):
+
+- The **bond–equity hedge fails in Stagflation across 45 years** (US-aggregate/equity correlation +0.41 in Stagflation vs ~0 elsewhere) — confirming 2022 was a regime feature, not a fluke.
+- **Duration is the dominant fixed-income lever** (long − short Treasury ≈ +8%/yr in Goldilocks, −4%/yr in Overheating); **credit/high-yield lag in Stagflation** (not defensive); **unhedged global bonds lag US ~9%/yr in Overheating** (strong dollar); **TIPS hedge inflation surprises but not the 2022 real-rate shock**.
+
+<p align="center">
+  <img src="figures/fixed_income/05_fi_bond_equity_corr.png" width="70%">
+</p>
+
 ---
 
 ## Quick start

@@ -1,0 +1,115 @@
+{
+  "sample": "1980-01-31..2026-06-30",
+  "regime_months_in_fi_sample": {
+    "Goldilocks": 101,
+    "Overheating": 46,
+    "Stagflation": 162,
+    "Recession": 248
+  },
+  "sharpe_by_regime": {
+    "Goldilocks": {
+      "VFISX": 0.85,
+      "VFITX": 1.14,
+      "VUSTX": 1.02,
+      "VBMFX": 1.18,
+      "VFICX": 1.11,
+      "VWESX": 0.86,
+      "VWEHX": 0.98,
+      "RPIBX": 0.37,
+      "VIPSX": 0.92,
+      "VFINX": 0.78
+    },
+    "Overheating": {
+      "VFISX": -1.06,
+      "VFITX": -0.94,
+      "VUSTX": -0.34,
+      "VBMFX": -0.45,
+      "VFICX": -1.09,
+      "VWESX": -0.15,
+      "VWEHX": -0.08,
+      "RPIBX": -1.07,
+      "VIPSX": -0.24,
+      "VFINX": -0.15
+    },
+    "Stagflation": {
+      "VFISX": 0.21,
+      "VFITX": 0.46,
+      "VUSTX": 0.37,
+      "VBMFX": 0.41,
+      "VFICX": 0.06,
+      "VWESX": 0.3,
+      "VWEHX": 0.04,
+      "RPIBX": -0.13,
+      "VIPSX": -0.04,
+      "VFINX": 0.17
+    },
+    "Recession": {
+      "VFISX": 0.32,
+      "VFITX": 0.16,
+      "VUSTX": -0.02,
+      "VBMFX": 0.33,
+      "VFICX": 0.53,
+      "VWESX": 0.35,
+      "VWEHX": 0.99,
+      "RPIBX": 0.49,
+      "VIPSX": 0.72,
+      "VFINX": 0.81
+    }
+  },
+  "spreads_by_regime": {
+    "Goldilocks": {
+      "Long credit \u2212 Long Treasury": -0.0297,
+      "Int credit \u2212 Int Treasury": -0.0023,
+      "High yield \u2212 IG credit": -0.0157,
+      "Global ex-US \u2212 US Agg": -0.0097,
+      "Long \u2212 Short Treasury (duration)": 0.0785,
+      "TIPS \u2212 nominal Treasury": -0.0071
+    },
+    "Overheating": {
+      "Long credit \u2212 Long Treasury": 0.0026,
+      "Int credit \u2212 Int Treasury": -0.0249,
+      "High yield \u2212 IG credit": 0.0083,
+      "Global ex-US \u2212 US Agg": -0.0882,
+      "Long \u2212 Short Treasury (duration)": -0.0399,
+      "TIPS \u2212 nominal Treasury": 0.0422
+    },
+    "Stagflation": {
+      "Long credit \u2212 Long Treasury": -0.0111,
+      "Int credit \u2212 Int Treasury": -0.0214,
+      "High yield \u2212 IG credit": -0.0294,
+      "Global ex-US \u2212 US Agg": -0.0344,
+      "Long \u2212 Short Treasury (duration)": 0.0398,
+      "TIPS \u2212 nominal Treasury": -0.0285
+    },
+    "Recession": {
+      "Long credit \u2212 Long Treasury": 0.0308,
+      "Int credit \u2212 Int Treasury": 0.024,
+      "High yield \u2212 IG credit": 0.0316,
+      "Global ex-US \u2212 US Agg": 0.0239,
+      "Long \u2212 Short Treasury (duration)": -0.0071,
+      "TIPS \u2212 nominal Treasury": 0.025
+    }
+  },
+  "bond_equity_corr": {
+    "Goldilocks": {
+      "US Aggregate": 0.058,
+      "Long Treasury": -0.172,
+      "Long IG credit": 0.057
+    },
+    "Overheating": {
+      "US Aggregate": 0.049,
+      "Long Treasury": 0.109,
+      "Long IG credit": 0.26
+    },
+    "Stagflation": {
+      "US Aggregate": 0.409,
+      "Long Treasury": 0.184,
+      "Long IG credit": 0.428
+    },
+    "Recession": {
+      "US Aggregate": 0.068,
+      "Long Treasury": -0.083,
+      "Long IG credit": 0.183
+    }
+  }
+}
