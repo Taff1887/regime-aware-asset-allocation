@@ -1,0 +1,70 @@
+# Long-history fixed-income universe for the deep-dive analysis.
+#
+# These are REAL investable mutual funds (dividend-adjusted NAV = total return
+# from FMP), chosen because they extend decades further than the ETF proxies and
+# let us study bond behaviour across the 1980s-90s inflation/disinflation regimes.
+# No simulated data. The small caveats (fund expense ratios; RPIBX is unhedged so
+# it carries FX) are documented in the report.
+#
+# `type` taxonomy: GovtShort / GovtInt / GovtLong / Aggregate / CreditIntIG /
+# CreditLongIG / HighYield / GlobalExUS / TIPS / Equity.
+
+base_currency: USD
+
+funds:
+  - ticker: VFISX
+    name: Vanguard Short-Term Treasury
+    type: GovtShort
+    region: US
+    inception: "1991-10-28"
+  - ticker: VFITX
+    name: Vanguard Intermediate-Term Treasury
+    type: GovtInt
+    region: US
+    inception: "1991-10-28"
+  - ticker: VUSTX
+    name: Vanguard Long-Term Treasury
+    type: GovtLong
+    region: US
+    inception: "1986-05-19"
+  - ticker: VBMFX
+    name: Vanguard Total Bond Market (US Aggregate)
+    type: Aggregate
+    region: US
+    inception: "1986-12-11"
+  - ticker: VFICX
+    name: Vanguard Intermediate-Term Investment-Grade
+    type: CreditIntIG
+    region: US
+    inception: "1993-11-01"
+  - ticker: VWESX
+    name: Vanguard Long-Term Investment-Grade (corporate)
+    type: CreditLongIG
+    region: US
+    inception: "1973-07-09"
+  - ticker: VWEHX
+    name: Vanguard High-Yield Corporate
+    type: HighYield
+    region: US
+    inception: "1978-12-27"
+  - ticker: RPIBX
+    name: T. Rowe Price International Bond (unhedged)
+    type: GlobalExUS
+    region: Intl
+    inception: "1986-09-10"
+  - ticker: VIPSX
+    name: Vanguard Inflation-Protected Securities (TIPS)
+    type: TIPS
+    region: US
+    inception: "2000-06-29"
+  - ticker: VFINX
+    name: Vanguard 500 Index (equity reference)
+    type: Equity
+    region: US
+    inception: "1976-08-31"
+
+# Risk-free proxy for the long sample: the effective federal funds rate
+# (real series from 1954; the 3m T-bill curve on FMP only starts 1990).
+cash_rate:
+  source: economic-indicators
+  name: federalFunds
