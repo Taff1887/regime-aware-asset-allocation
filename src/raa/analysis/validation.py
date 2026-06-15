@@ -16,7 +16,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from raa.regimes.rule_based import REGIME_ORDER, classify_regimes, regime_episodes, transition_matrix
+from raa.regimes.rule_based import (
+    REGIME_ORDER,
+    classify_regimes,
+    regime_episodes,
+    transition_matrix,
+)
 from raa.utils.config import settings
 from raa.utils.io import read_parquet, write_csv
 from raa.utils.logging import logger

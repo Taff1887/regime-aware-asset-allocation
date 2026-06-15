@@ -32,7 +32,7 @@ from raa.regimes.statistical import (
 from raa.utils.config import settings
 from raa.utils.io import read_parquet, write_csv
 from raa.utils.logging import logger
-from raa.utils.viz import REGIME_COLORS, save_fig
+from raa.utils.viz import PALETTE, REGIME_COLORS, save_fig
 
 MARKET_COLORS = {"Risk-On": "#2E8B57", "Neutral": "#BBBBBB", "Risk-Off": "#C0392B"}
 CORE_SET = ["SPY", "EEM", "IEF", "TLT", "LQD", "HYG", "DBC", "GLD", "VNQ"]
@@ -198,8 +198,11 @@ def _fig_pf_risk(pf_risk: pd.DataFrame) -> None:
     fig, ax = plt.subplots(figsize=(9, 6))
     bottom = np.zeros(len(df.columns))
     x = range(len(df.columns))
+    fac_colors = {f: PALETTE[i % len(PALETTE)] for i, f in enumerate(FACTOR_LABELS)}
+    fac_colors["idiosyncratic"] = "#BBBBBB"
     for fac in df.index:
-        ax.bar(x, df.loc[fac].to_numpy() * 100, bottom=bottom, label=FACTOR_LABELS.get(fac, fac))
+        ax.bar(x, df.loc[fac].to_numpy() * 100, bottom=bottom,
+               label=FACTOR_LABELS.get(fac, fac.capitalize()), color=fac_colors.get(fac))
         bottom += df.loc[fac].to_numpy() * 100
     ax.set_xticks(list(x), df.columns)
     ax.set_ylabel("% of portfolio variance")

@@ -142,7 +142,7 @@ def _fig_correlations(corr: pd.DataFrame) -> None:
     for k, ph in enumerate(["pre", "during", "post"]):
         axes[0].bar(x + (k - 1) * w, corr[f"avg_corr_{ph}"].to_numpy(), w, label=ph)
         axes[1].bar(x + (k - 1) * w, corr[f"eqbond_{ph}"].to_numpy(), w, label=ph)
-    for ax, title in zip(axes, ["Average pairwise correlation", "Equity-bond correlation (SPY/IEF)"]):
+    for ax, title in zip(axes, ["Average pairwise correlation", "Equity-bond correlation (SPY/IEF)"], strict=False):
         ax.set_xticks(x, corr.index, rotation=30, ha="right", fontsize=8)
         ax.axhline(0, color="#444", lw=0.8)
         ax.set_title(title)

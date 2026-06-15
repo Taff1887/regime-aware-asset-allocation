@@ -88,7 +88,7 @@ def optimal_assignment(states: pd.Series, reference: pd.Series) -> tuple[pd.Seri
     df = pd.concat([states.rename("s"), reference.astype(str).rename("r")], axis=1).dropna()
     cont = pd.crosstab(df["s"], df["r"]).reindex(columns=REGIME_ORDER, fill_value=0)
     row_ind, col_ind = linear_sum_assignment(-cont.to_numpy())
-    mapping = {cont.index[r]: cont.columns[c] for r, c in zip(row_ind, col_ind)}
+    mapping = {cont.index[r]: cont.columns[c] for r, c in zip(row_ind, col_ind, strict=False)}
     for s in cont.index:  # states beyond the 4 quadrants -> their argmax overlap
         if s not in mapping:
             mapping[s] = cont.columns[int(cont.loc[s].to_numpy().argmax())]

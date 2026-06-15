@@ -140,7 +140,7 @@ def _fig_regime_counts(counts: pd.DataFrame) -> None:
     from raa.utils.viz import REGIME_COLORS
 
     ax.bar(counts.index, counts["months"], color=[REGIME_COLORS[r] for r in counts.index])
-    for i, (r, row) in enumerate(counts.iterrows()):
+    for i, (_r, row) in enumerate(counts.iterrows()):
         ax.text(i, row["months"], f"{int(row['months'])}\n{row['share']:.0%}", ha="center", va="bottom", fontsize=9)
     ax.set_title("Months per regime (full sample)")
     ax.set_ylabel("Months")
@@ -177,7 +177,7 @@ def _fig_corr_small_multiples(corr: dict[str, pd.DataFrame]) -> None:
     if len(labels) == 1:
         axes = [axes]
     im = None
-    for ax, label in zip(axes, labels):
+    for ax, label in zip(axes, labels, strict=False):
         im = corr_heatmap(ax, corr[label], f"{label}")
     fig.suptitle("Cross-asset correlation matrix within each regime", y=1.02, fontsize=13, weight="bold")
     if im is not None:

@@ -15,7 +15,6 @@ from __future__ import annotations
 import json
 
 import matplotlib.pyplot as plt
-import numpy as np
 import pandas as pd
 
 from raa.analysis import crisis, currency, metrics, validation
