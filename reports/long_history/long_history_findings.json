@@ -2,82 +2,82 @@
   "sample": "1990-02-28..2026-06-30",
   "sharpe": {
     "60/40": 0.65,
-    "Equal-Weight": 0.531,
-    "Inverse-Vol": 0.562,
-    "ERC (Risk Parity)": 0.564,
-    "Min-Variance": 0.543,
-    "Max-Diversification": 0.545,
-    "Max-Sharpe (MVO)": 0.617,
-    "Regime ERC": 0.564,
-    "Regime Max-Sharpe": 0.568,
-    "Regime Risk Overlay": 0.574
+    "Equal-Weight": 0.535,
+    "Inverse-Vol": 0.566,
+    "ERC (Risk Parity)": 0.568,
+    "Min-Variance": 0.547,
+    "Max-Diversification": 0.553,
+    "Max-Sharpe (MVO)": 0.621,
+    "Regime ERC": 0.569,
+    "Regime Max-Sharpe": 0.573,
+    "Regime Risk Overlay": 0.576
   },
   "ann_return": {
-    "60/40": 0.0875,
-    "Equal-Weight": 0.0657,
+    "60/40": 0.0869,
+    "Equal-Weight": 0.0656,
     "Inverse-Vol": 0.0605,
     "ERC (Risk Parity)": 0.0602,
-    "Min-Variance": 0.049,
-    "Max-Diversification": 0.0555,
-    "Max-Sharpe (MVO)": 0.0582,
+    "Min-Variance": 0.0491,
+    "Max-Diversification": 0.0557,
+    "Max-Sharpe (MVO)": 0.0581,
     "Regime ERC": 0.0606,
     "Regime Max-Sharpe": 0.0579,
     "Regime Risk Overlay": 0.0587
   },
   "max_drawdown": {
-    "60/40": -0.325,
-    "Equal-Weight": -0.249,
-    "Inverse-Vol": -0.169,
-    "ERC (Risk Parity)": -0.164,
-    "Min-Variance": -0.121,
-    "Max-Diversification": -0.15,
-    "Max-Sharpe (MVO)": -0.161,
+    "60/40": -0.321,
+    "Equal-Weight": -0.244,
+    "Inverse-Vol": -0.165,
+    "ERC (Risk Parity)": -0.163,
+    "Min-Variance": -0.118,
+    "Max-Diversification": -0.146,
+    "Max-Sharpe (MVO)": -0.156,
     "Regime ERC": -0.163,
-    "Regime Max-Sharpe": -0.161,
-    "Regime Risk Overlay": -0.166
+    "Regime Max-Sharpe": -0.156,
+    "Regime Risk Overlay": -0.165
   },
   "crisis_drawdowns": {
     "1990 recession": {
-      "60/40": -8.4,
-      "ERC (Risk Parity)": -8.2,
+      "60/40": -8.3,
+      "ERC (Risk Parity)": -8.1,
       "Regime Risk Overlay": -5.1,
-      "Regime Max-Sharpe": -7.2
+      "Regime Max-Sharpe": -7.1
     },
     "1994 bond crash": {
       "60/40": -6.2,
       "ERC (Risk Parity)": -5.5,
-      "Regime Risk Overlay": -5.8,
+      "Regime Risk Overlay": -5.7,
       "Regime Max-Sharpe": -6.4
     },
     "Dot-com 2000-02": {
       "60/40": -23.2,
       "ERC (Risk Parity)": -1.3,
       "Regime Risk Overlay": -2.5,
-      "Regime Max-Sharpe": -5.0
+      "Regime Max-Sharpe": -4.8
     },
     "GFC 2007-09": {
-      "60/40": -32.5,
-      "ERC (Risk Parity)": -16.1,
-      "Regime Risk Overlay": -11.8,
-      "Regime Max-Sharpe": -16.1
+      "60/40": -32.1,
+      "ERC (Risk Parity)": -15.7,
+      "Regime Risk Overlay": -11.5,
+      "Regime Max-Sharpe": -15.6
     },
     "Euro 2011": {
-      "60/40": -8.2,
-      "ERC (Risk Parity)": -1.9,
-      "Regime Risk Overlay": -1.9,
-      "Regime Max-Sharpe": -2.4
+      "60/40": -8.1,
+      "ERC (Risk Parity)": -1.8,
+      "Regime Risk Overlay": -1.8,
+      "Regime Max-Sharpe": -2.3
     },
     "COVID 2020": {
-      "60/40": -11.6,
-      "ERC (Risk Parity)": -4.3,
-      "Regime Risk Overlay": -2.1,
-      "Regime Max-Sharpe": -4.2
+      "60/40": -11.3,
+      "ERC (Risk Parity)": -4.1,
+      "Regime Risk Overlay": -2.0,
+      "Regime Max-Sharpe": -4.0
     },
     "Inflation 2022": {
-      "60/40": -20.2,
+      "60/40": -20.4,
       "ERC (Risk Parity)": -15.8,
       "Regime Risk Overlay": -15.8,
-      "Regime Max-Sharpe": -10.5
+      "Regime Max-Sharpe": -10.6
     }
   }
 }

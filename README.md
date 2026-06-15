@@ -14,18 +14,18 @@ Static vs regime-aware strategies, 15-asset global universe, 2005–2026, net of
 
 | Strategy | Ann. return | Vol | Sharpe | Max drawdown |
 |---|---:|---:|---:|---:|
-| 60/40 (US) | 8.1% | 9.1% | 0.71 | −29.5% |
-| ERC / Risk Parity | 4.9% | 6.7% | 0.48 | −20.5% |
-| Max-Sharpe (MVO) | 5.6% | 6.4% | 0.62 | −15.3% |
-| **Regime Risk Overlay** | 4.6% | 5.8% | 0.50 | **−15.1%** |
+| 60/40 (US) | 8.1% | 9.0% | 0.71 | −28.9% |
+| ERC / Risk Parity | 4.9% | 6.6% | 0.49 | −19.6% |
+| Max-Sharpe (MVO) | 5.6% | 6.4% | 0.62 | −14.7% |
+| **Regime Risk Overlay** | 4.6% | 5.8% | 0.51 | **−15.0%** |
 
 **Three conclusions:**
 
 1. **Diversification is regime-dependent.** The equity–bond correlation flips from **−0.55 (Goldilocks)** to **positive in inflation regimes** — and in the **2022 inflation shock the hedge broke** (corr +0.13; bonds −34%, only commodities rose +21%) while it held through the GFC, Euro, China and COVID crises.
 2. **60/40 is ~95% one (equity) risk factor** — "balanced" by capital, not by risk.
-3. **Regime awareness pays as risk management, not alpha.** A transparent de-risking overlay cut max drawdown ~26% (and the GFC drawdown from −20.5% to −11.3%, COVID to −1.5%), but the Sharpe improvement is **not statistically significant** — an honest result the report does not overstate.
+3. **Regime awareness pays as risk management, not alpha.** A transparent de-risking overlay cut max drawdown ~24% (and the GFC drawdown from −19.6% to −10.9%, COVID to −1.2%), but the Sharpe improvement is **not statistically significant** — an honest result the report does not overstate.
 
-> **Full-period robustness (1990–2026, report §12.7):** rebuilt on real long-history fund proxies, the conclusions hold over 36 years and seven crises. 60/40's Sharpe edge narrows and it carries **~double the drawdown** (−32.5% vs ~−16%); on **Calmar (return per unit of drawdown) every diversified strategy beats 60/40**. The dot-com bust is diversification's finest hour (60/40 −23% vs risk-parity −1%).
+> **Full-period robustness (1990–2026, report §12.7):** rebuilt on real long-history fund proxies, the conclusions hold over 36 years and seven crises. 60/40's Sharpe edge narrows and it carries **~double the drawdown** (−32.1% vs ~−16%); on **Calmar (return per unit of drawdown) every diversified strategy beats 60/40**. The dot-com bust is diversification's finest hour (60/40 −23% vs risk-parity −1%).
 
 <p align="center">
   <img src="figures/phase3/06_crisis_correlations.png" width="48%">

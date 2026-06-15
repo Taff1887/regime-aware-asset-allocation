@@ -383,17 +383,17 @@ The engine is strictly point-in-time. At each quarter-end, weights are a functio
 
 | Strategy | Ann. return | Ann. vol | Sharpe | Max DD | Turnover (q) |
 |---|---:|---:|---:|---:|---:|
-| 60/40 | 8.1% | 9.1% | **0.71** | −29.5% | 0.0% |
-| Equal-Weight | 6.2% | 10.3% | 0.47 | −33.9% | 0.4% |
-| Inverse-Vol | 5.4% | 7.7% | 0.49 | −24.0% | 0.6% |
-| ERC (Risk Parity) | 4.9% | 6.7% | 0.48 | −20.5% | 1.1% |
-| Min-Variance | 2.7% | 3.4% | 0.29 | −10.1% | 1.6% |
-| Max-Diversification | 3.9% | 4.8% | 0.46 | −12.8% | 1.8% |
-| Max-Sharpe (MVO) | 5.6% | 6.4% | 0.62 | −15.3% | 3.4% |
-| Regime ERC | 4.9% | 6.9% | 0.48 | −20.5% | 2.4% |
-| Regime Min-Variance | 2.8% | 3.6% | 0.29 | −10.1% | 4.1% |
-| Regime Max-Sharpe | 5.4% | 7.0% | 0.54 | −15.3% | 9.6% |
-| **Regime Risk Overlay** | 4.6% | 5.8% | **0.50** | **−15.1%** | 2.5% |
+| 60/40 | 8.1% | 9.0% | **0.71** | −28.9% | 1.0% |
+| Equal-Weight | 6.3% | 10.2% | 0.48 | −32.9% | 1.7% |
+| Inverse-Vol | 5.4% | 7.6% | 0.49 | −23.0% | 1.6% |
+| ERC (Risk Parity) | 4.9% | 6.6% | 0.49 | −19.6% | 1.8% |
+| Min-Variance | 2.8% | 3.4% | 0.29 | −9.7% | 1.8% |
+| Max-Diversification | 4.0% | 4.7% | 0.47 | −12.3% | 2.3% |
+| Max-Sharpe (MVO) | 5.6% | 6.4% | 0.62 | −14.7% | 3.3% |
+| Regime ERC | 5.0% | 6.8% | 0.49 | −19.6% | 2.9% |
+| Regime Min-Variance | 2.8% | 3.6% | 0.30 | −9.7% | 4.3% |
+| Regime Max-Sharpe | 5.4% | 6.9% | 0.54 | −14.7% | 9.3% |
+| **Regime Risk Overlay** | 4.6% | 5.8% | **0.51** | **−15.0%** | 3.1% |
 
 ![Sharpe ranking](../figures/phase3/03_sharpe_ranking.png)
 
@@ -403,7 +403,7 @@ Three observations:
 
 1. **60/40 led on Sharpe (0.71)** in this sample, and **Max-Sharpe MVO (0.62)** was the best risk-based strategy. The 60/40 result owes much to **US-equity exceptionalism and the bond bull of 2009–2021**; globally diversified strategies were dragged by lagging non-US equities and commodities. This is a humbling, sample-specific result, not evidence that diversification "doesn't work."
 
-2. **Regime-conditioning the covariance added nothing** like-for-like (Regime ERC 0.48 = static ERC 0.48; Regime Min-Var = static Min-Var). The covariance *structure* is stable enough across regimes that risk-balanced weights barely move.
+2. **Regime-conditioning the covariance added nothing** like-for-like (Regime ERC 0.49 ≈ static ERC 0.49; Regime Min-Var = static Min-Var). The covariance *structure* is stable enough across regimes that risk-balanced weights barely move.
 
 3. **Regime-conditioning expected returns hurt**: Regime Max-Sharpe (0.54) underperformed static MVO (0.62) with three times the turnover — a clean demonstration that regime-conditional return forecasts are too noisy to trade.
 
@@ -413,7 +413,7 @@ Three observations:
 
 *Figure 12.3 — Drawdown paths: static vs regime-aware.*
 
-Where regime awareness *does* help is **risk management**. The Regime Risk Overlay improved on its ERC base on both axes — Sharpe 0.50 vs 0.48 and **max drawdown −15.1% vs −20.5% (a ~26% reduction)** — at modest turnover (2.5%).
+Where regime awareness *does* help is **risk management**. The Regime Risk Overlay improved on its ERC base on both axes — Sharpe 0.51 vs 0.49 and **max drawdown −15.0% vs −19.6% (a ~24% reduction)** — at modest turnover (3.1%).
 
 ### 12.3 Crisis stress tests
 
@@ -455,12 +455,12 @@ Strategy drawdowns through each crisis:
 
 | Strategy | GFC | Euro 2011 | China | COVID | Inflation 2022 |
 |---|---:|---:|---:|---:|---:|
-| 60/40 | −29.5% | −5.8% | −4.5% | −9.4% | −20.5% |
-| ERC (Risk Parity) | −20.5% | −2.3% | −4.5% | −5.7% | −15.1% |
-| **Regime Risk Overlay** | **−11.3%** | −2.3% | −3.4% | **−1.5%** | −15.1% |
-| Regime Max-Sharpe | −15.3% | −4.5% | −2.5% | −3.7% | −14.4% |
+| 60/40 | −28.9% | −5.5% | −4.4% | −8.9% | −20.7% |
+| ERC (Risk Parity) | −19.6% | −2.1% | −4.6% | −5.3% | −15.0% |
+| **Regime Risk Overlay** | **−10.9%** | −2.1% | −3.5% | **−1.2%** | −15.0% |
+| Regime Max-Sharpe | −14.7% | −4.5% | −2.5% | −3.6% | −14.5% |
 
-The overlay materially cushioned the **growth-shock crises** (GFC −11.3% vs 60/40 −29.5%; COVID −1.5% vs −9.4%) by de-risking into bonds. Crucially, it offered **no extra protection in the 2022 inflation shock** (−15.1%, same as its base), because the de-risking moved into Treasuries — which themselves fell. **The overlay only diversifies the risks the macro hedge can diversify; against an inflation shock, only real assets help.** This honest caveat shapes the recommendations in §14.
+The overlay materially cushioned the **growth-shock crises** (GFC −10.9% vs 60/40 −28.9%; COVID −1.2% vs −8.9%) by de-risking into bonds. Crucially, it offered **no extra protection in the 2022 inflation shock** (−15.0%, same as its base), because the de-risking moved into Treasuries — which themselves fell. **The overlay only diversifies the risks the macro hedge can diversify; against an inflation shock, only real assets help.** This honest caveat shapes the recommendations in §14.
 
 ### 12.4 Currency hedging (USD investor)
 
@@ -486,13 +486,13 @@ We bootstrap the **real observed monthly returns** in 6-month blocks (5,000 resa
 
 *Figure 12.8 — Bootstrap 95% confidence intervals for Sharpe. They overlap heavily.*
 
-The Sharpe confidence intervals are wide (e.g. 60/40 0.71 [0.26, 1.22]; Regime Risk Overlay 0.50 [0.10, 0.99]) and overlap. Testing the *difference* in Sharpe between paired strategies:
+The Sharpe confidence intervals are wide (e.g. 60/40 0.71 [0.26, 1.23]; Regime Risk Overlay 0.51 [0.10, 0.99]) and overlap. Testing the *difference* in Sharpe between paired strategies:
 
 | Comparison | Sharpe difference | 95% CI | p(A not better) |
 |---|---:|---:|---:|
-| Regime Risk Overlay − ERC | +0.02 | [−0.20, +0.22] | 0.46 |
+| Regime Risk Overlay − ERC | +0.01 | [−0.20, +0.22] | 0.48 |
 | Regime Max-Sharpe − Static MVO | −0.08 | [−0.23, +0.04] | 0.90 |
-| Regime Risk Overlay − 60/40 | −0.21 | [−0.56, +0.13] | 0.88 |
+| Regime Risk Overlay − 60/40 | −0.21 | [−0.57, +0.13] | 0.88 |
 
 ![Sharpe difference distribution](../figures/phase3/10_sharpe_diff_distribution.png)
 
@@ -555,21 +555,21 @@ To address the question *"do the portfolio conclusions hold over the entire peri
 
 | Strategy | Ann. return | Ann. vol | Sharpe | Max DD | **Calmar** | Turnover (q) |
 |---|---:|---:|---:|---:|---:|---:|
-| 60/40 | 8.8% | 9.3% | **0.65** | **−32.5%** | 0.27 |0.0% |
-| Equal-Weight | 6.6% | 7.2% | 0.53 | −24.9% | 0.26 | 0.3% |
-| Inverse-Vol | 6.0% | 5.8% | 0.56 | −16.9% | 0.36 | 0.7% |
-| ERC (Risk Parity) | 6.0% | 5.7% | 0.56 | −16.4% | 0.37 | 0.8% |
-| Min-Variance | 4.9% | 3.8% | 0.54 | **−12.1%** | **0.41** | 2.5% |
-| Max-Diversification | 5.6% | 5.0% | 0.55 | −15.0% | 0.37 | 2.6% |
-| Max-Sharpe (MVO) | 5.8% | 4.9% | 0.62 | −16.1% | 0.36 | 3.5% |
-| Regime ERC | 6.1% | 5.8% | 0.56 | −16.3% | 0.37 | 1.3% |
-| Regime Max-Sharpe | 5.8% | 5.3% | 0.57 | −16.1% | 0.36 | 7.6% |
-| **Regime Risk Overlay** | 5.9% | 5.4% | **0.57** | −16.6% | 0.35 | 2.0% |
+| 60/40 | 8.7% | 9.2% | **0.65** | **−32.1%** | 0.27 | 0.8% |
+| Equal-Weight | 6.6% | 7.2% | 0.53 | −24.4% | 0.27 | 1.4% |
+| Inverse-Vol | 6.0% | 5.8% | 0.57 | −16.5% | 0.37 | 1.3% |
+| ERC (Risk Parity) | 6.0% | 5.7% | 0.57 | −16.3% | 0.37 | 1.3% |
+| Min-Variance | 4.9% | 3.8% | 0.55 | **−11.8%** | **0.42** | 2.6% |
+| Max-Diversification | 5.6% | 5.0% | 0.55 | −14.6% | 0.38 | 3.0% |
+| Max-Sharpe (MVO) | 5.8% | 4.8% | 0.62 | −15.6% | 0.37 | 3.4% |
+| Regime ERC | 6.1% | 5.8% | 0.57 | −16.3% | 0.37 | 1.7% |
+| Regime Max-Sharpe | 5.8% | 5.2% | 0.57 | −15.6% | 0.37 | 7.4% |
+| **Regime Risk Overlay** | 5.9% | 5.3% | **0.58** | −16.6% | 0.36 | 2.4% |
 
 The longer sample sharpens — and largely confirms — the §12.1 story:
 
-- **60/40 still posts the highest raw Sharpe (0.65), but the gap narrows** versus the 2005–2026 sample, and it carries **by far the worst drawdown (−32.5%, roughly double the risk-based strategies' ~−16%)**. On **Calmar (return per unit of drawdown) — the metric an insurer cares about — every diversified strategy beats 60/40** (Min-Variance 0.41, risk-parity/regime 0.37 vs 60/40's 0.27).
-- **Regime conditioning of returns still disappoints** and the **overlay still modestly improves on its risk-parity base** (0.57 vs 0.56) — consistent with §12.1.
+- **60/40 still posts the highest raw Sharpe (0.65), but the gap narrows** versus the 2005–2026 sample, and it carries **by far the worst drawdown (−32.1%, roughly double the risk-based strategies' ~−16%)**. On **Calmar (return per unit of drawdown) — the metric an insurer cares about — every diversified strategy beats 60/40** (Min-Variance 0.42, risk-parity/regime 0.37 vs 60/40's 0.27).
+- **Regime conditioning of returns still disappoints** and the **overlay still modestly improves on its risk-parity base** (0.58 vs 0.57) — consistent with §12.1.
 
 ![Long-history crisis drawdowns](../figures/long_history/03_long_crisis_drawdowns.png)
 
@@ -579,12 +579,12 @@ The extended crisis set — now including the **1990 recession, the 1994 bond cr
 
 | Strategy | 1990 | 1994 | Dot-com 00–02 | GFC | Euro 11 | COVID | Inflation 22 |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| 60/40 | −8.4% | −6.2% | **−23.2%** | **−32.5%** | −8.2% | −11.6% | −20.2% |
-| ERC (Risk Parity) | −8.2% | −5.5% | −1.3% | −16.1% | −1.9% | −4.3% | −15.8% |
-| **Regime Risk Overlay** | −5.1% | −5.8% | −2.5% | **−11.8%** | −1.9% | **−2.1%** | −15.8% |
-| Regime Max-Sharpe | −7.2% | −6.4% | −5.0% | −16.1% | −2.4% | −4.2% | **−10.5%** |
+| 60/40 | −8.3% | −6.2% | **−23.2%** | **−32.1%** | −8.1% | −11.3% | −20.4% |
+| ERC (Risk Parity) | −8.1% | −5.5% | −1.3% | −15.7% | −1.8% | −4.1% | −15.8% |
+| **Regime Risk Overlay** | −5.1% | −5.7% | −2.5% | **−11.5%** | −1.8% | **−2.0%** | −15.8% |
+| Regime Max-Sharpe | −7.1% | −6.4% | −4.8% | −15.6% | −2.3% | −4.0% | **−10.6%** |
 
-The **dot-com bust** is diversification's finest hour (60/40 −23% vs risk-parity −1%); the **overlay roughly halves the GFC and COVID drawdowns again**; and in the **2022 inflation shock the return-rotating Regime Max-Sharpe did best (−10.5%)** by tilting toward commodities, while the overlay — de-risking into bonds that also fell — gave no extra help (the §12.3 caveat, reconfirmed over a longer history). The **1994 bond crash** hit every strategy similarly (~−5–6%), a reminder that a duration shock is hard to diversify within fixed income.
+The **dot-com bust** is diversification's finest hour (60/40 −23% vs risk-parity −1%); the **overlay roughly halves the GFC and COVID drawdowns again**; and in the **2022 inflation shock the return-rotating Regime Max-Sharpe did best (−10.6%)** by tilting toward commodities, while the overlay — de-risking into bonds that also fell — gave no extra help (the §12.3 caveat, reconfirmed over a longer history). The **1994 bond crash** hit every strategy similarly (~−5–6%), a reminder that a duration shock is hard to diversify within fixed income.
 
 ---
 
@@ -597,9 +597,9 @@ A sceptical committee will ask whether the results hinge on arbitrary choices. T
 *Figure 13.1 — Overlay sensitivity to de-risk strength (left) and to transaction costs (right).*
 
 - **Threshold method.** The headline correlation/diversification results are robust to using an expanding-median, rolling-median or full-sample-median threshold: Stagflation has the highest average pairwise correlation (0.39–0.45) under all three, and the equity–bond correlation is least-negative/positive in inflation regimes under all three.
-- **De-risk strength.** The overlay's Sharpe is ~0.49–0.50 for de-risk factors of 0.25–0.75 (versus 0.48 for the no-overlay base), so the 50% choice is representative, not cherry-picked. *Full* de-risking (factor 0.0) hurts (Sharpe 0.45) — moderation beats aggression.
-- **Transaction costs.** The overlay's Sharpe stays above its static base across 0–50 bps (0.508→0.482 vs ERC 0.485→0.475), because its turnover is low.
-- **Confirmation lag.** Results are stable for confirmation windows of 1, 3 and 6 months (Sharpe 0.49→0.51); a longer window slightly improves outcomes by avoiding whipsaws.
+- **De-risk strength.** The overlay's Sharpe is ~0.48–0.51 for de-risk factors of 0.25–0.75 (versus 0.49 for the no-overlay base), so the 50% choice is representative, not cherry-picked. *Full* de-risking (factor 0.0) hurts (Sharpe 0.44) — moderation beats aggression.
+- **Transaction costs.** The overlay's Sharpe stays above its static base across 0–50 bps (0.513→0.481 vs ERC 0.496→0.479), because its turnover is low.
+- **Confirmation lag.** Results are stable for confirmation windows of 1, 3 and 6 months; a longer window slightly improves outcomes by avoiding whipsaws.
 
 ---
 
