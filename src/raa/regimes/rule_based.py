@@ -156,6 +156,29 @@ def regime_episodes(regime: pd.Series) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
+def confirm_regime(regime: pd.Series, k: int = 3) -> pd.Series:
+    """Whipsaw filter: only switch the active regime after ``k`` consecutive months
+    of a new label. Reduces turnover for the backtest and adds a realistic,
+    conservative confirmation lag. NaNs hold the last confirmed regime.
+    """
+    out, last, run_val, run_len = [], None, None, 0
+    for v in regime:
+        sv = None if (v is None or (isinstance(v, float) and pd.isna(v))) else str(v)
+        if sv is None:
+            out.append(last)
+            continue
+        if sv == run_val:
+            run_len += 1
+        else:
+            run_val, run_len = sv, 1
+        if run_len >= k or last is None:
+            last = sv
+        out.append(last)
+    return pd.Series(out, index=regime.index, name="regime_confirmed").astype(
+        pd.CategoricalDtype(categories=REGIME_ORDER)
+    )
+
+
 def transition_matrix(regime: pd.Series, normalize: bool = True) -> pd.DataFrame:
     """Month-to-month regime transition counts (or probabilities)."""
     r = regime.dropna().astype(str)
