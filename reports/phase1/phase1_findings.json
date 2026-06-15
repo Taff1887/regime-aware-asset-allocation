@@ -1,0 +1,45 @@
+{
+  "regime_counts": {
+    "Goldilocks": 89,
+    "Overheating": 45,
+    "Stagflation": 96,
+    "Recession": 159
+  },
+  "equity_bond_corr_by_regime": {
+    "Goldilocks": -0.55,
+    "Overheating": 0.158,
+    "Stagflation": 0.126,
+    "Recession": -0.225
+  },
+  "diversification_index": {
+    "Goldilocks": 0.224,
+    "Overheating": 0.257,
+    "Stagflation": 0.399,
+    "Recession": 0.297,
+    "All": 0.323
+  },
+  "spy_sharpe": {
+    "Goldilocks": 0.82,
+    "Overheating": 0.76,
+    "Stagflation": -0.17,
+    "Recession": 1.03
+  },
+  "ief_sharpe": {
+    "Goldilocks": 1.31,
+    "Overheating": -0.53,
+    "Stagflation": 0.29,
+    "Recession": 0.23
+  },
+  "gld_sharpe": {
+    "Goldilocks": 0.83,
+    "Overheating": -0.14,
+    "Stagflation": 1.12,
+    "Recession": 0.31
+  },
+  "dbc_sharpe": {
+    "Goldilocks": -0.2,
+    "Overheating": 1.09,
+    "Stagflation": -0.37,
+    "Recession": 0.44
+  }
+}

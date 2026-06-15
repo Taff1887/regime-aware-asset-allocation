@@ -1,0 +1,9 @@
+pair,a,b,Goldilocks,Overheating,Stagflation,Recession,All
+Equity / Intermediate Treasury,SPY,IEF,-0.55,0.158,0.126,-0.225,-0.101
+Equity / Long Treasury,SPY,TLT,-0.617,0.288,0.084,-0.182,-0.101
+Equity / IG Credit,SPY,LQD,0.016,0.539,0.492,0.335,0.388
+Equity / High Yield,SPY,HYG,0.818,0.607,0.758,0.719,0.734
+Equity / Commodities,SPY,DBC,0.678,0.135,0.441,0.41,0.443
+Equity / Gold,SPY,GLD,-0.008,0.128,0.13,0.086,0.079
+Equity / REITs,SPY,VNQ,0.69,0.711,0.794,0.708,0.736
+High Yield / Treasury,HYG,IEF,-0.291,0.562,0.263,-0.109,0.078
