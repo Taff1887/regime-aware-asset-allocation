@@ -51,6 +51,11 @@ def fetch_fi_returns(client: FMPClient, syms: list[str]) -> pd.DataFrame:
     return monthly_px.pct_change()
 
 
+def _fetch_returns_wide(syms: list[str]) -> pd.DataFrame:
+    """Convenience: fetch a list of symbols and return wide monthly returns."""
+    return fetch_fi_returns(FMPClient(), syms)
+
+
 def build_long_rf(client: FMPClient) -> pd.Series:
     ff = client.economic_indicator("federalFunds", "1950-01-01", END)
     d = pd.DataFrame(ff)

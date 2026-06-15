@@ -166,14 +166,20 @@ def regime_overlay_strategy(
     derisk: float = 0.5,
     shrinkage: bool = True,
     min_asset_obs: int = 24,
+    risk_sleeve: set[str] | None = None,
+    defensive_sleeve: set[str] | None = None,
 ) -> WeightFn:
     """Transparent, implementable overlay: hold an ERC base, but in adverse macro
     regimes (Stagflation/Recession) cut the risk-asset sleeve by ``1-derisk`` and
     move the freed weight into defensives (Treasuries + gold), proportionally.
 
     ``derisk`` is a fixed, non-optimised parameter (sensitivity tested separately).
+    ``risk_sleeve`` / ``defensive_sleeve`` let other universes (e.g. mutual-fund
+    proxies) define their own sleeves; they default to the ETF sets.
     """
     reg = regimes.dropna().astype(str)
+    risk_sleeve = risk_sleeve or RISK_SLEEVE
+    defensive_sleeve = defensive_sleeve or DEFENSIVE_SLEEVE
 
     def fn(hist: pd.DataFrame, t: pd.Timestamp) -> pd.Series | None:
         cols = available_assets(hist, assets, min_asset_obs)
@@ -183,8 +189,8 @@ def regime_overlay_strategy(
         w = construct.equal_risk_contribution(cov)
         cur = reg.asof(t)
         if pd.notna(cur) and str(cur) in ADVERSE_REGIMES:
-            risk_cols = [a for a in w.index if a in RISK_SLEEVE]
-            def_cols = [a for a in w.index if a in DEFENSIVE_SLEEVE]
+            risk_cols = [a for a in w.index if a in risk_sleeve]
+            def_cols = [a for a in w.index if a in defensive_sleeve]
             freed = w[risk_cols].sum() * (1.0 - derisk)
             if risk_cols and def_cols and w[def_cols].sum() > 0:
                 w[risk_cols] = w[risk_cols] * derisk
