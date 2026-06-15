@@ -1,0 +1,189 @@
+# Asset universe for the regime-aware allocation study.
+#
+# Every asset is a liquid, USD-listed ETF used as an institutional proxy for its
+# asset class. We pull DIVIDEND-ADJUSTED prices from FMP, i.e. total-return
+# series in USD. The `currency` field records the *underlying* currency exposure
+# of the asset (used by the currency-hedging analysis), NOT the quote currency.
+#
+# `inception` is the approximate first reliable date in FMP. `core: true` marks
+# the longer-history subset (data from ~2004) used for extended analysis; the
+# full universe shares a common sample from ~2008 (gated by HYG/IGF/RWO/DBC).
+#
+# Where no clean long-history USD ETF exists for a specific sleeve (e.g. AU
+# government bonds, gilts, bunds, JGBs across the curve), we use the best
+# available proxy and document the gap in the report. No hidden assumptions.
+
+base_currency: USD
+
+assets:
+  # ---------------------------------------------------------------- Equities
+  - ticker: SPY
+    name: US Equities (S&P 500)
+    asset_class: Equity
+    sub_class: US
+    region: US
+    currency: USD
+    inception: "1993-01-29"
+    core: true
+  - ticker: EWA
+    name: Australian Equities (MSCI Australia)
+    asset_class: Equity
+    sub_class: Australia
+    region: AU
+    currency: AUD
+    inception: "1996-03-18"
+    core: true
+  - ticker: EWU
+    name: UK Equities (MSCI United Kingdom)
+    asset_class: Equity
+    sub_class: UK
+    region: UK
+    currency: GBP
+    inception: "1996-03-18"
+    core: true
+  - ticker: IEV
+    name: European Equities (S&P Europe 350)
+    asset_class: Equity
+    sub_class: Europe
+    region: EU
+    currency: EUR
+    inception: "2000-07-28"
+    core: true
+  - ticker: EWJ
+    name: Japanese Equities (MSCI Japan)
+    asset_class: Equity
+    sub_class: Japan
+    region: JP
+    currency: JPY
+    inception: "1996-03-18"
+    core: true
+  - ticker: EEM
+    name: Emerging Markets Equities (MSCI EM)
+    asset_class: Equity
+    sub_class: EM
+    region: EM
+    currency: USD   # diversified EM basket; treated as USD-exposure proxy
+    inception: "2003-04-14"
+    core: true
+
+  # -------------------------------------------------------- Government bonds
+  - ticker: SHY
+    name: US Treasuries 1-3y (short)
+    asset_class: Government Bonds
+    sub_class: US Short
+    region: US
+    currency: USD
+    inception: "2002-07-31"
+    core: true
+  - ticker: IEF
+    name: US Treasuries 7-10y (intermediate)
+    asset_class: Government Bonds
+    sub_class: US Intermediate
+    region: US
+    currency: USD
+    inception: "2002-07-31"
+    core: true
+  - ticker: TLT
+    name: US Treasuries 20y+ (long)
+    asset_class: Government Bonds
+    sub_class: US Long
+    region: US
+    currency: USD
+    inception: "2002-07-31"
+    core: true
+  - ticker: BWX
+    name: International Treasuries ex-US (developed)
+    asset_class: Government Bonds
+    sub_class: Intl ex-US
+    region: DM ex-US
+    currency: FX-basket   # unhedged developed ex-US govt; carries FX exposure
+    inception: "2007-10-05"
+    core: false
+
+  # ----------------------------------------------------------------- Credit
+  - ticker: LQD
+    name: US Investment-Grade Credit
+    asset_class: Credit
+    sub_class: Investment Grade
+    region: US
+    currency: USD
+    inception: "2002-07-30"
+    core: true
+  - ticker: HYG
+    name: US High-Yield Credit
+    asset_class: Credit
+    sub_class: High Yield
+    region: US
+    currency: USD
+    inception: "2007-04-11"
+    core: false
+
+  # ------------------------------------------------------------ Real assets
+  - ticker: IGF
+    name: Global Infrastructure
+    asset_class: Real Assets
+    sub_class: Infrastructure
+    region: Global
+    currency: FX-basket
+    inception: "2007-12-10"
+    core: false
+  - ticker: RWO
+    name: Global REITs
+    asset_class: Real Assets
+    sub_class: REITs
+    region: Global
+    currency: FX-basket
+    inception: "2008-05-22"
+    core: false
+  - ticker: VNQ
+    name: US REITs (long-history proxy)
+    asset_class: Real Assets
+    sub_class: REITs US
+    region: US
+    currency: USD
+    inception: "2004-09-29"
+    core: true
+  - ticker: DBC
+    name: Commodities (broad, DBIQ)
+    asset_class: Real Assets
+    sub_class: Commodities
+    region: Global
+    currency: USD
+    inception: "2006-02-06"
+    core: false
+  - ticker: GLD
+    name: Gold
+    asset_class: Real Assets
+    sub_class: Gold
+    region: Global
+    currency: USD
+    inception: "2004-11-18"
+    core: true
+
+  # ------------------------------------------------------------------- Cash
+  - ticker: BIL
+    name: US T-Bills 1-3m (cash)
+    asset_class: Cash
+    sub_class: T-Bills
+    region: US
+    currency: USD
+    inception: "2007-05-30"
+    core: false
+
+# Foreign-exchange spot pairs (vs USD) for the currency-hedging analysis.
+# Pulled as FMP forex EOD series; used to construct hedged vs unhedged returns.
+fx:
+  - pair: AUDUSD
+    currency: AUD
+  - pair: GBPUSD
+    currency: GBP
+  - pair: EURUSD
+    currency: EUR
+  - pair: JPYUSD
+    currency: JPY
+
+# Cash / risk-free rate proxy: the 3-month constant-maturity Treasury yield from
+# the FMP treasury-rates endpoint (deeper history than the BIL ETF).
+cash_rate:
+  source: treasury-rates
+  tenor: month3
