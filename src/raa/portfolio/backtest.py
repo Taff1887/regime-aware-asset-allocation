@@ -41,27 +41,35 @@ def run_backtest(
     R = returns.sort_index()
     dates = R.index
     i0 = max(min_obs, R.index.get_indexer([pd.Timestamp(start)])[0] if start else min_obs)
-    w_prev: pd.Series | None = None
-    w_cur: pd.Series | None = None
+    w_held: pd.Series | None = None  # actual held weights (drift between rebalances)
     rows, weights_hist, turn_hist = [], {}, {}
 
     for i in range(i0, len(dates) - 1):
         t, t1 = dates[i], dates[i + 1]
-        if (i - i0) % rebalance_every == 0 or w_cur is None:
-            hist = R.loc[:t]
-            w_new = weight_fn(hist, t)
+        turn = 0.0
+        if (i - i0) % rebalance_every == 0 or w_held is None:
+            w_new = weight_fn(R.loc[:t], t)
             if w_new is not None and w_new.sum() > 0:
-                w_cur = w_new.reindex(R.columns).fillna(0.0)
-        if w_cur is None:
+                target = w_new.reindex(R.columns).fillna(0.0)
+                if w_held is None:
+                    w_held = target  # initial allocation: no turnover charged
+                else:
+                    # turnover = trade from the *drifted* book back to target
+                    turn = float((target - w_held.reindex(target.index).fillna(0.0)).abs().sum())
+                    w_held = target.copy()
+        if w_held is None:
             continue
-        r_next = R.loc[t1, w_cur.index].fillna(0.0)
-        gross = float((w_cur * r_next).sum())
-        turn = 0.0 if w_prev is None else float((w_cur - w_prev).abs().sum())
+        r_next = R.loc[t1, w_held.index].fillna(0.0)
+        gross = float((w_held * r_next).sum())
         cost = turn * cost_bps / 1e4
         rows.append((t1, gross - cost, gross))
-        weights_hist[t1] = w_cur
         turn_hist[t1] = turn
-        w_prev = w_cur
+        # drift the held weights with the period's realised returns
+        grown = w_held * (1.0 + r_next)
+        total = grown.sum()
+        if total > 0:
+            w_held = grown / total
+        weights_hist[t1] = w_held
 
     if not rows:
         return {"name": name, "net": pd.Series(dtype=float)}

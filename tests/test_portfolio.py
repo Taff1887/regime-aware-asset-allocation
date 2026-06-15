@@ -50,14 +50,21 @@ def test_available_assets_respects_min_obs():
     assert avail == ["A"]
 
 
-def test_backtest_fixed_weights_zero_turnover():
+def test_backtest_fixed_weights_turnover_from_drift():
     idx = pd.date_range("2000-01-31", periods=60, freq="ME")
-    rng = np.random.default_rng(1)
-    rets = pd.DataFrame(
-        {"SPY": rng.normal(0.005, 0.04, 60), "IEF": rng.normal(0.002, 0.015, 60)}, index=idx
-    )
     fn = static_strategy("fixed", ["SPY", "IEF"], fixed={"SPY": 0.6, "IEF": 0.4})
-    res = run_backtest(rets, fn, cost_bps=10, min_obs=12, rebalance_every=1, name="6040")
+
+    # identical returns => no drift => zero rebalancing turnover
+    same = pd.DataFrame({"SPY": [0.01] * 60, "IEF": [0.01] * 60}, index=idx)
+    res = run_backtest(same, fn, cost_bps=10, min_obs=12, rebalance_every=1, name="6040")
     assert not res["net"].empty
-    # constant target weights => ~zero turnover after the first rebalance
-    assert res["turnover"].iloc[1:].abs().mean() < 1e-6
+    assert res["turnover"].iloc[1:].abs().mean() < 1e-9
+
+    # divergent returns => weights drift => positive (but modest) turnover on rebalance
+    rng = np.random.default_rng(1)
+    div = pd.DataFrame(
+        {"SPY": rng.normal(0.01, 0.05, 60), "IEF": rng.normal(0.002, 0.01, 60)}, index=idx
+    )
+    res2 = run_backtest(div, fn, cost_bps=10, min_obs=12, rebalance_every=3, name="6040")
+    avg_to = res2["turnover"].iloc[1:].mean()
+    assert 0 < avg_to < 0.2
