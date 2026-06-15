@@ -1,0 +1,92 @@
+{
+  "factor_r2_mean": 0.8919598264052776,
+  "pf_factor_risk_6040": {
+    "growth": 0.95,
+    "rates": 0.032,
+    "credit": -0.034,
+    "inflation": -0.012,
+    "commodity": 0.009,
+    "currency": 0.035,
+    "volatility": 0.006,
+    "liquidity": 0.001,
+    "idiosyncratic": 0.012
+  },
+  "hmm_vs_rule": {
+    "adjusted_rand": 0.035133919494610324,
+    "match_rate": 0.36175710594315247,
+    "n": 387
+  },
+  "kmeans_vs_rule": {
+    "adjusted_rand": 0.04885534858772782,
+    "match_rate": 0.3953488372093023,
+    "n": 387
+  },
+  "gmm_vs_rule": {
+    "adjusted_rand": 0.03426226246219857,
+    "match_rate": 0.39276485788113696,
+    "n": 387
+  },
+  "hmm_persistence": {
+    "S0": 0.96,
+    "S1": 0.95,
+    "S2": 0.94,
+    "S3": 0.98
+  },
+  "factor_ir_by_regime": {
+    "Goldilocks": {
+      "growth": 0.82,
+      "rates": 1.03,
+      "credit": -0.13,
+      "inflation": -0.23,
+      "commodity": -0.2,
+      "currency": -0.01,
+      "volatility": -0.05,
+      "liquidity": 0.29
+    },
+    "Overheating": {
+      "growth": 0.76,
+      "rates": -0.54,
+      "credit": 0.74,
+      "inflation": 0.59,
+      "commodity": 1.09,
+      "currency": 1.45,
+      "volatility": -0.03,
+      "liquidity": 0.02
+    },
+    "Stagflation": {
+      "growth": -0.17,
+      "rates": 0.29,
+      "credit": -0.36,
+      "inflation": 0.27,
+      "commodity": -0.37,
+      "currency": 0.01,
+      "volatility": 0.22,
+      "liquidity": -0.02
+    },
+    "Recession": {
+      "growth": 1.03,
+      "rates": 0.08,
+      "credit": 0.54,
+      "inflation": 0.38,
+      "commodity": 0.44,
+      "currency": -0.45,
+      "volatility": -0.09,
+      "liquidity": -0.01
+    },
+    "All": {
+      "growth": 0.61,
+      "rates": 0.2,
+      "credit": 0.16,
+      "inflation": 0.28,
+      "commodity": 0.14,
+      "currency": -0.03,
+      "volatility": 0.01,
+      "liquidity": 0.04
+    }
+  },
+  "market_regime_spy": {
+    "Risk-On": 0.0217,
+    "Neutral": 0.0106,
+    "Risk-Off": -0.0144
+  }
+}
