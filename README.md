@@ -12,12 +12,14 @@ The methodology is deliberately **simple-first**: a four-quadrant Growth × Infl
 
 Static vs regime-aware strategies, 15-asset global universe, 2005–2026, net of 10 bps costs, point-in-time:
 
-| Strategy | Ann. return | Vol | Sharpe | Max drawdown |
-|---|---:|---:|---:|---:|
-| 60/40 (US) | 8.1% | 9.0% | 0.71 | −28.9% |
-| ERC / Risk Parity | 4.9% | 6.6% | 0.49 | −19.6% |
-| Max-Sharpe (MVO) | 5.6% | 6.4% | 0.62 | −14.7% |
-| **Regime Risk Overlay** | 4.6% | 5.8% | 0.51 | **−15.0%** |
+| Strategy | Ann. return | Vol | Sharpe | Max drawdown | Calmar |
+|---|---:|---:|---:|---:|---:|
+| 60/40 (US) | 8.1% | 9.0% | 0.71 | −28.9% | 0.28 |
+| ERC / Risk Parity | 4.9% | 6.6% | 0.49 | −19.6% | 0.25 |
+| Max-Sharpe (MVO) | 5.6% | 6.4% | 0.62 | −14.7% | **0.38** |
+| **Regime Risk Overlay** | 4.6% | 5.8% | 0.51 | **−15.0%** | 0.31 |
+
+*(Calmar = return per unit of max drawdown — on this metric the diversified/regime strategies beat 60/40 despite its higher raw Sharpe.)*
 
 **Three conclusions:**
 
@@ -38,6 +40,7 @@ A companion analysis extends to **~1980–2026** using real long-history bond mu
 
 - The **bond–equity hedge fails in Stagflation across 45 years** (US-aggregate/equity correlation +0.41 in Stagflation vs ~0 elsewhere) — confirming 2022 was a regime feature, not a fluke.
 - **Duration is the dominant fixed-income lever** (long − short Treasury ≈ +8%/yr in Goldilocks, −4%/yr in Overheating); **credit/high-yield lag in Stagflation** (not defensive); **unhedged global bonds lag US ~9%/yr in Overheating** (strong dollar); **TIPS hedge inflation surprises but not the 2022 real-rate shock**.
+- A **fixed-income-only portfolio backtest** (report §12.8) treats bond sleeves as building blocks: within bonds, **min-variance/MVO dominate risk-adjusted** (and MVO works far better than in equities, since yields anchor expected returns), **credit adds return but tail risk**, **unhedged global adds little for a USD investor**, and **no bond-only mix escapes a 2022-style rate shock** — the structural case for a real-asset sleeve.
 
 <p align="center">
   <img src="figures/fixed_income/05_fi_bond_equity_corr.png" width="70%">

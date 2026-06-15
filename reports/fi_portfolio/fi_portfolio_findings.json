@@ -1,0 +1,74 @@
+{
+  "sample": "1995-02-28..2026-06-30",
+  "sharpe": {
+    "US Aggregate (VBMFX)": 0.428,
+    "Equal-Weight (1/N)": 0.403,
+    "Treasury Ladder (govt only)": 0.293,
+    "Credit Tilt": 0.476,
+    "Domestic 1/N (no global)": 0.449,
+    "Inverse-Vol": 0.427,
+    "ERC (Risk Parity)": 0.427,
+    "Min-Variance": 0.508,
+    "Max-Sharpe (MVO)": 0.565,
+    "Regime ERC": 0.435,
+    "Regime Credit De-risk": 0.394
+  },
+  "calmar": {
+    "US Aggregate (VBMFX)": 0.242,
+    "Equal-Weight (1/N)": 0.22,
+    "Treasury Ladder (govt only)": 0.158,
+    "Credit Tilt": 0.235,
+    "Domestic 1/N (no global)": 0.242,
+    "Inverse-Vol": 0.262,
+    "ERC (Risk Parity)": 0.262,
+    "Min-Variance": 0.486,
+    "Max-Sharpe (MVO)": 0.51,
+    "Regime ERC": 0.268,
+    "Regime Credit De-risk": 0.246
+  },
+  "max_drawdown": {
+    "US Aggregate (VBMFX)": -0.176,
+    "Equal-Weight (1/N)": -0.212,
+    "Treasury Ladder (govt only)": -0.258,
+    "Credit Tilt": -0.229,
+    "Domestic 1/N (no global)": -0.202,
+    "Inverse-Vol": -0.168,
+    "ERC (Risk Parity)": -0.168,
+    "Min-Variance": -0.073,
+    "Max-Sharpe (MVO)": -0.078,
+    "Regime ERC": -0.168,
+    "Regime Credit De-risk": -0.169
+  },
+  "crisis_drawdowns": {
+    "Dot-com 2000-02": {
+      "US Aggregate (VBMFX)": -2.2,
+      "Treasury Ladder (govt only)": -4.7,
+      "Credit Tilt": -2.1,
+      "Regime Credit De-risk": -3.1
+    },
+    "GFC 2007-09": {
+      "US Aggregate (VBMFX)": -4.0,
+      "Treasury Ladder (govt only)": -4.4,
+      "Credit Tilt": -13.5,
+      "Regime Credit De-risk": -5.9
+    },
+    "Euro 2011": {
+      "US Aggregate (VBMFX)": -0.8,
+      "Treasury Ladder (govt only)": -2.5,
+      "Credit Tilt": -1.5,
+      "Regime Credit De-risk": -1.3
+    },
+    "COVID 2020": {
+      "US Aggregate (VBMFX)": -0.5,
+      "Treasury Ladder (govt only)": 0.0,
+      "Credit Tilt": -3.8,
+      "Regime Credit De-risk": -0.0
+    },
+    "Inflation 2022": {
+      "US Aggregate (VBMFX)": -16.0,
+      "Treasury Ladder (govt only)": -17.2,
+      "Credit Tilt": -20.0,
+      "Regime Credit De-risk": -14.7
+    }
+  }
+}

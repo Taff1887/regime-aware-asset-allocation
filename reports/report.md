@@ -381,19 +381,21 @@ The engine is strictly point-in-time. At each quarter-end, weights are a functio
 
 *Figure 12.1 — Cumulative growth of $1, net of costs (log scale). Regime strategies dashed.*
 
-| Strategy | Ann. return | Ann. vol | Sharpe | Max DD | Turnover (q) |
-|---|---:|---:|---:|---:|---:|
-| 60/40 | 8.1% | 9.0% | **0.71** | −28.9% | 1.0% |
-| Equal-Weight | 6.3% | 10.2% | 0.48 | −32.9% | 1.7% |
-| Inverse-Vol | 5.4% | 7.6% | 0.49 | −23.0% | 1.6% |
-| ERC (Risk Parity) | 4.9% | 6.6% | 0.49 | −19.6% | 1.8% |
-| Min-Variance | 2.8% | 3.4% | 0.29 | −9.7% | 1.8% |
-| Max-Diversification | 4.0% | 4.7% | 0.47 | −12.3% | 2.3% |
-| Max-Sharpe (MVO) | 5.6% | 6.4% | 0.62 | −14.7% | 3.3% |
-| Regime ERC | 5.0% | 6.8% | 0.49 | −19.6% | 2.9% |
-| Regime Min-Variance | 2.8% | 3.6% | 0.30 | −9.7% | 4.3% |
-| Regime Max-Sharpe | 5.4% | 6.9% | 0.54 | −14.7% | 9.3% |
-| **Regime Risk Overlay** | 4.6% | 5.8% | **0.51** | **−15.0%** | 3.1% |
+| Strategy | Ann. return | Ann. vol | Sharpe | Max DD | **Calmar** | Turnover (q) |
+|---|---:|---:|---:|---:|---:|---:|
+| 60/40 | 8.1% | 9.0% | **0.71** | −28.9% | 0.28 | 1.0% |
+| Equal-Weight | 6.3% | 10.2% | 0.48 | −32.9% | 0.19 | 1.7% |
+| Inverse-Vol | 5.4% | 7.6% | 0.49 | −23.0% | 0.23 | 1.6% |
+| ERC (Risk Parity) | 4.9% | 6.6% | 0.49 | −19.6% | 0.25 | 1.8% |
+| Min-Variance | 2.8% | 3.4% | 0.29 | −9.7% | 0.28 | 1.8% |
+| Max-Diversification | 4.0% | 4.7% | 0.47 | −12.3% | 0.32 | 2.3% |
+| Max-Sharpe (MVO) | 5.6% | 6.4% | 0.62 | −14.7% | **0.38** | 3.3% |
+| Regime ERC | 5.0% | 6.8% | 0.49 | −19.6% | 0.25 | 2.9% |
+| Regime Min-Variance | 2.8% | 3.6% | 0.30 | −9.7% | 0.29 | 4.3% |
+| Regime Max-Sharpe | 5.4% | 6.9% | 0.54 | −14.7% | 0.37 | 9.3% |
+| **Regime Risk Overlay** | 4.6% | 5.8% | **0.51** | **−15.0%** | 0.31 | 3.1% |
+
+*Calmar = annualised return ÷ |max drawdown| (return per unit of worst-case loss). On Calmar, **Max-Sharpe (0.38), Regime Max-Sharpe (0.37) and the Regime Risk Overlay (0.31) all beat 60/40 (0.28)** — even in this 60/40-friendly sample, the diversified and regime strategies deliver more return per unit of drawdown.*
 
 ![Sharpe ranking](../figures/phase3/03_sharpe_ranking.png)
 
@@ -585,6 +587,51 @@ The extended crisis set — now including the **1990 recession, the 1994 bond cr
 | Regime Max-Sharpe | −7.1% | −6.4% | −4.8% | −15.6% | −2.3% | −4.0% | **−10.6%** |
 
 The **dot-com bust** is diversification's finest hour (60/40 −23% vs risk-parity −1%); the **overlay roughly halves the GFC and COVID drawdowns again**; and in the **2022 inflation shock the return-rotating Regime Max-Sharpe did best (−10.6%)** by tilting toward commodities, while the overlay — de-risking into bonds that also fell — gave no extra help (the §12.3 caveat, reconfirmed over a longer history). The **1994 bond crash** hit every strategy similarly (~−5–6%), a reminder that a duration shock is hard to diversify within fixed income.
+
+### 12.8 Fixed-income-only portfolio construction
+
+The previous sections allocate *across* asset classes. For a fixed-income-dominated book (an insurer's general account is typically ≥80–90% bonds), the more relevant question is how to allocate *within* fixed income. Here we treat the bond **sleeves as the building blocks** — the bond analogue of single-name equity selection — mapped to the underlying risks:
+
+| Risk | Sleeves |
+|---|---|
+| Rates / duration | short, intermediate, long Treasuries |
+| Credit | intermediate & long IG, high yield |
+| Inflation | TIPS |
+| Currency / global | unhedged international bonds |
+
+We backtest 1995–2026 (real fund data, net of costs, point-in-time) against the US Aggregate (VBMFX) benchmark, comparing naive 1/N, optimiser-based, heuristic building-block, and a regime "credit de-risk" overlay (cut credit + global into governments + TIPS in adverse regimes).
+
+![FI portfolio Sharpe and Calmar](../figures/fi_portfolio/02_fi_portfolio_sharpe_calmar.png)
+
+*Figure 12.15 — Sharpe and Calmar of fixed-income-only portfolios, 1995–2026.*
+
+| Portfolio | Ann. return | Ann. vol | Sharpe | Calmar | Max DD | Turnover (q) |
+|---|---:|---:|---:|---:|---:|---:|
+| US Aggregate (VBMFX) | 4.3% | 4.2% | 0.43 | 0.24 | −17.6% | 0.0% |
+| Equal-Weight (1/N) | 4.7% | 5.5% | 0.40 | 0.22 | −21.2% | 0.7% |
+| Treasury Ladder (govt only) | 4.1% | 5.7% | 0.29 | 0.16 | −25.8% | 0.5% |
+| Credit Tilt | 5.4% | 6.2% | 0.48 | 0.23 | −22.9% | 0.6% |
+| Domestic 1/N (no global) | 4.9% | 5.4% | 0.45 | 0.24 | −20.2% | 0.7% |
+| Inverse-Vol | 4.4% | 4.5% | 0.43 | 0.26 | −16.8% | 0.7% |
+| ERC (Risk Parity) | 4.4% | 4.5% | 0.43 | 0.26 | −16.8% | 0.7% |
+| Min-Variance | 3.6% | 2.1% | 0.51 | 0.49 | **−7.3%** | 1.0% |
+| **Max-Sharpe (MVO)** | 4.0% | 2.6% | **0.57** | **0.51** | −7.8% | 1.6% |
+| Regime ERC | 4.5% | 4.6% | 0.44 | 0.27 | −16.8% | 1.2% |
+| Regime Credit De-risk | 4.2% | 4.3% | 0.39 | 0.25 | −16.9% | 2.6% |
+
+Five lessons for a bond book:
+
+1. **Within fixed income, minimum-variance and mean-variance dominate risk-adjusted** (Sharpe 0.51 / 0.57; Calmar 0.49 / 0.51; max drawdown just ~−8%), by concentrating in short, high-grade duration. **Crucially, MVO works *far better* here than in the multi-asset book (§12.1)**: bond expected returns are anchored by yield and are far more estimable than equity returns, so mean-variance's Achilles heel — return-estimation error — is much milder in fixed income.
+2. **Credit adds return but tail risk.** The Credit Tilt earned the highest return (5.4%) but the worst crisis behaviour (GFC −13.5%, 2022 −20%). The credit premium is real but cyclical — size it deliberately, not as a yield-reach.
+3. **Pure duration is volatile and underpaid.** The Treasury Ladder had the worst risk-adjusted profile (Sharpe 0.29, drawdown −25.8%) — long-government duration is high-variance and, over 1995–2026, did not compensate per unit of risk.
+4. **Unhedged global bonds added little for a USD investor:** Domestic 1/N (Sharpe 0.45) beat the global-inclusive Equal-Weight (0.40) — FX added noise without a premium, echoing §12.4.
+5. **No bond-only portfolio escaped 2022.** A rising-real-rate shock pushed *every* sleeve down together (−14% to −20%); the regime credit-de-risk overlay was marginally best (−14.7%) but there is **no hiding place within fixed income from a rate/inflation shock — only real assets help** (§12.6). As elsewhere, the regime overlay improved crisis drawdowns (GFC −5.9% vs the Credit Tilt's −13.5%) without adding Sharpe.
+
+![FI portfolio crises](../figures/fi_portfolio/03_fi_portfolio_crisis.png)
+
+*Figure 12.16 — Fixed-income-only portfolio drawdowns through crises. Credit is punished in the GFC; the 2022 rate shock hits everything.*
+
+**Implication for an insurer:** the within-bond decision is dominated by **duration and credit risk-budgeting**. A minimum-variance / risk-parity bond book maximises risk-adjusted return; credit should be a deliberate, cyclically-sized allocation rather than a permanent yield-reach; global adds little unhedged for a USD investor; and because no bond-only construction defends against an inflation/rate shock, a modest real-asset sleeve remains the only structural hedge for the one regime that hurts the whole book.
 
 ---
 
