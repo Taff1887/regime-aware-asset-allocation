@@ -1,0 +1,4 @@
+,divcorr_Goldilocks,divcorr_Overheating,divcorr_Stagflation,divcorr_Recession,divcorr_All,eqbond_Goldilocks,eqbond_Overheating,eqbond_Stagflation,eqbond_Recession
+expanding_median,0.224,0.257,0.399,0.297,0.323,-0.55,0.158,0.126,-0.225
+rolling_median,0.235,0.273,0.391,0.325,0.323,-0.44,-0.072,0.031,-0.156
+full_median,0.24,0.223,0.448,0.304,0.323,-0.537,-0.209,0.29,-0.182

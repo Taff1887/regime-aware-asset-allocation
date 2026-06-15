@@ -1,161 +1,99 @@
 # Regime-Aware Strategic Asset Allocation
 
-**Does explicitly identifying macroeconomic regimes — and adjusting expected returns, volatilities, correlations and portfolio weights accordingly — improve portfolio outcomes versus traditional static strategic asset allocation (SAA)?**
+Does identifying macroeconomic **regimes** — and adjusting expected returns, volatilities, correlations and weights accordingly — improve portfolio outcomes versus a static strategic asset allocation (SAA)? This repo answers that end-to-end on **real historical data** (Financial Modeling Prep): transparent regime detection, asset behaviour by regime, macro risk-factor decomposition, a costed out-of-sample backtest, crisis stress tests, currency-hedging analysis, and a practical implementation framework.
 
-This repository is an institutional-quality research project that answers that question end-to-end: from raw data collection, through transparent regime detection, asset-class behaviour by regime, risk-factor decomposition, portfolio construction, costed out-of-sample backtesting, historical crisis stress tests, and a practical implementation framework suitable for an investment committee.
+The methodology is deliberately **simple-first**: a four-quadrant Growth × Inflation model is the core; HMM/clustering are supplementary robustness checks. **No simulated or synthetic data is used anywhere** — the only resampling is a block bootstrap of observed returns.
 
-> **Methodology stance.** Per the project's guiding principle, the **core framework is deliberately simple and transparent** — a four-quadrant Growth × Inflation regime model that any CIO or multi-asset PM can follow — and we *first establish that simple regime relationships exist in the data* before layering on advanced methods (Hidden Markov Models, clustering, market-implied regimes), which are treated as **supplementary** robustness checks rather than the headline.
-
----
-
-## Status
-
-This project is built and documented in phases. Current progress:
-
-- [x] **Phase 0** — Repository scaffold, configuration, cached FMP data client, macro + price pipeline
-- [x] **Phase 1** — Simple four-quadrant regime analysis (return / vol / Sharpe / correlation by regime) — *go/no-go: relationships confirmed*
-- [x] **Phase 2** — Supplementary regimes (HMM, clustering, market-implied) + risk-factor decomposition
-- [x] **Phase 3** — Portfolio construction, costed backtesting, crisis stress tests, currency hedging, statistical validation
-- [ ] **Phase 4** — Executive summary, full institutional `report.md`, README rewrite, publication figures
-
-> **Note:** the README is being finalised in Phase 4 into a normal concise GitHub overview, with all detailed findings moving to a standalone [`reports/report.md`](reports/). All analysis uses **real historical data only** (FMP); no simulated or synthetic data is used anywhere.
-
-*(Headline results tables below are populated as each phase completes.)*
+📄 **Full report:** [`reports/report.md`](reports/report.md) · **Executive summary:** [`reports/executive_summary.md`](reports/executive_summary.md)
 
 ---
 
-## Headline result
+## Headline results
 
-> _Populated at the end of Phase 3._
+Static vs regime-aware strategies, 15-asset global universe, 2005–2026, net of 10 bps costs, point-in-time:
 
-| Metric | Static 60/40 | Static Risk Parity | Regime-Aware | 
-|---|---|---|---|
-| Annualised return | — | — | — |
-| Annualised volatility | — | — | — |
-| Sharpe ratio | — | — | — |
-| Max drawdown | — | — | — |
+| Strategy | Ann. return | Vol | Sharpe | Max drawdown |
+|---|---:|---:|---:|---:|
+| 60/40 (US) | 8.1% | 9.1% | 0.71 | −29.5% |
+| ERC / Risk Parity | 4.9% | 6.7% | 0.48 | −20.5% |
+| Max-Sharpe (MVO) | 5.6% | 6.4% | 0.62 | −15.3% |
+| **Regime Risk Overlay** | 4.6% | 5.8% | 0.50 | **−15.1%** |
+
+**Three conclusions:**
+
+1. **Diversification is regime-dependent.** The equity–bond correlation flips from **−0.55 (Goldilocks)** to **positive in inflation regimes** — and in the **2022 inflation shock the hedge broke** (corr +0.13; bonds −34%, only commodities rose +21%) while it held through the GFC, Euro, China and COVID crises.
+2. **60/40 is ~95% one (equity) risk factor** — "balanced" by capital, not by risk.
+3. **Regime awareness pays as risk management, not alpha.** A transparent de-risking overlay cut max drawdown ~26% (and the GFC drawdown from −20.5% to −11.3%, COVID to −1.5%), but the Sharpe improvement is **not statistically significant** — an honest result the report does not overstate.
+
+<p align="center">
+  <img src="figures/phase3/06_crisis_correlations.png" width="48%">
+  <img src="figures/phase2/03_portfolio_factor_risk.png" width="48%">
+</p>
 
 ---
 
 ## Quick start
 
-Requires Python ≥ 3.11, [uv](https://docs.astral.sh/uv/), and a [Financial Modeling Prep](https://site.financialmodelingprep.com) API key.
+Requires Python ≥ 3.11, [uv](https://docs.astral.sh/uv/), and a free/premium [FMP](https://site.financialmodelingprep.com) API key.
 
 ```bash
-# 1. Configure your FMP key
-cp .env.example .env        # then edit .env and set FMP_API_KEY
-
-# 2. Install the locked environment
-uv sync
-
-# 3. Collect data (cached locally; safe to re-run)
-uv run python -m raa.data.collect
-
-# 4. Run the simple regime analysis (Phase 1)
-uv run python -m raa.analysis.phase1
+cp .env.example .env        # add FMP_API_KEY
+uv sync --extra advanced
+uv run python -m raa.data.collect        # macro + prices + market panels (cached)
+uv run python -m raa.analysis.phase1     # rule-based regimes + per-regime stats
+uv run python -m raa.analysis.phase2     # risk factors + supplementary regimes
+uv run python -m raa.analysis.phase3     # portfolios, backtest, crisis, currency, validation
+uv run python -m raa.analysis.sensitivity
 ```
 
-All FMP responses are cached under `data/cache/`, so re-runs are instant and offline-friendly. Processed panels land in `data/processed/`.
+FMP responses are cached under `data/cache/`, so re-runs are instant and offline-friendly.
 
 ---
 
 ## Repository structure
 
 ```
-regime-aware-asset-allocation/
-├── config/              # universe.yaml (asset proxies), regime parameters
-├── src/raa/
-│   ├── utils/           # config, logging, I/O, plotting style
-│   ├── data/            # FMP client, macro + price collection, asset universe
-│   ├── regimes/         # regime detection (rule-based core; HMM/clustering/market-implied)
-│   ├── analysis/        # performance metrics, per-regime statistics
-│   ├── portfolio/       # static & regime-aware construction, backtesting
-│   └── reporting/       # figure & table generation
-├── data/
-│   ├── raw/             # (gitignored) raw vendor pulls
-│   ├── cache/           # (gitignored) cached FMP JSON
-│   └── processed/       # parquet panels (regenerated by the pipeline)
-├── notebooks/           # numbered exploratory notebooks
-├── figures/             # publication-quality charts
-├── reports/             # executive summary + full institutional report
-└── tests/               # pytest suite
+config/            universe.yaml (asset proxies, FX, cash)
+src/raa/
+  utils/           config, logging, I/O, plotting style
+  data/            cached FMP client; macro, price, market collectors
+  regimes/         rule-based (core), HMM/clustering, market-implied
+  factors/         8-factor construction + decomposition
+  portfolio/       optimisers + point-in-time backtest engine
+  analysis/        metrics, by-regime stats, phase runners, crisis, currency, validation, sensitivity
+  reporting/       shared chart helpers
+figures/           publication-quality charts (phase1/2/3)
+reports/           report.md, executive_summary.md, result tables (CSV)
+tests/             pytest suite
 ```
 
 ---
 
-## Executive summary
+## Methodology summary
 
-> _Populated in Phase 4. See [`reports/executive_summary.md`](reports/executive_summary.md) for the 2–4 page version aimed at the CIO / investment committee._
+- **Regimes:** Growth × Inflation quadrants (Goldilocks / Overheating / Stagflation / Recession) from CPI and industrial-production trends vs a point-in-time expanding-median threshold, lagged for publication delay. Supplementary: Gaussian HMM, K-means/GMM/hierarchical clustering, market-implied risk-on/off (VIX + FX vol + funding spread).
+- **Universe:** liquid USD-listed ETF total-return proxies for global equities, three Treasury durations, IG/HY credit, infrastructure, REITs, commodities and gold.
+- **Factors:** growth, rates, credit, inflation, commodity, currency (tradable) + volatility, liquidity (indicators); 89% average R².
+- **Backtest:** static (60/40, equal-weight, inverse-vol, ERC, min-variance, max-diversification, MVO) vs regime-aware (regime ERC/min-var/max-Sharpe + a de-risking overlay); transaction costs, turnover, quarterly rebalancing, regime-confirmation lag, look-ahead and survivorship controls.
+- **Validation:** block bootstrap of real returns for Sharpe confidence intervals and difference tests; sensitivity to threshold method, de-risk strength, costs and confirmation lag.
 
-## Research motivation
-
-Traditional strategic asset allocation fixes expected returns, volatilities and correlations at long-run averages and holds weights roughly constant. Yet the empirical behaviour of asset classes — and crucially their *correlations* — appears to shift with the macroeconomic environment. If diversification benefits systematically deteriorate exactly when they are most needed (e.g. equity/bond correlations turning positive during inflation shocks), a static allocation may understate risk and miss opportunities to position defensively. This project tests whether **simple, transparent regime conditioning** materially changes the inputs to allocation and whether acting on it survives realistic, costed, out-of-sample implementation.
-
-## Literature review
-
-> _Populated in Phase 4 — Investment Clock (Merrill Lynch), Bridgewater All-Weather / risk parity, Ang & Bekaert regime-switching, Kritzman et al. on regime shifts and turbulence, Ilmanen on expected returns, and the equity-bond correlation literature._
-
-## Methodology
-
-1. **Data** — globally diversified asset universe via liquid ETF total-return proxies; US macro series and the Treasury curve from FMP (1990–present).
-2. **Regime detection** — primary: rule-based Growth × Inflation quadrants (Goldilocks, Reflation/Overheating, Stagflation, Recession). Supplementary: HMM, K-means/GMM/hierarchical clustering, market-implied (VIX, credit spreads, curve, FX vol).
-3. **Asset behaviour by regime** — annualised return, volatility, drawdown, VaR/ES and full correlation matrices, per regime.
-4. **Risk-factor decomposition** — exposure to inflation, growth, rates, credit, liquidity, commodity, FX and volatility factors.
-5. **Portfolio construction** — static benchmarks (60/40, risk parity, min-variance, max-diversification, ERC) vs regime-aware variants.
-6. **Backtesting** — walk-forward / expanding / rolling, with transaction costs, turnover, rebalancing frequency and regime-detection lag; look-ahead and survivorship controls.
-7. **Validation** — bootstrap, reality-check tests, confidence intervals, regime-persistence and out-of-sample robustness.
-
-## Data sources
-
-| Domain | Source | Notes |
-|---|---|---|
-| Asset prices | FMP `historical-price-eod/dividend-adjusted` | Total-return ETF proxies, daily |
-| Macro (CPI, IP, GDP, unemployment, fed funds) | FMP `economic-indicators` | Monthly/quarterly, 1990– |
-| Treasury curve | FMP `treasury-rates` | Daily 1m–30y, 1990– |
-| FX (hedging analysis) | FMP forex EOD | AUD/GBP/EUR/JPY vs USD |
-
-Asset proxies and their documented limitations are defined in [`config/universe.yaml`](config/universe.yaml).
-
-## Regime definitions
-
-> _Detailed in Phase 1._ The core model classifies each month into one of four quadrants from the **trend in growth** (industrial production YoY, corroborated by real-GDP YoY and unemployment) and the **trend in inflation** (CPI YoY):
-
-| Regime | Inflation | Growth |
-|---|---|---|
-| Goldilocks | Low | High |
-| Overheating / Reflation | High | High |
-| Stagflation | High | Low |
-| Recession | Low | Low |
-
-## Portfolio construction process
-
-> _Populated in Phase 3._
-
-## Results
-
-> _Populated in Phases 1–3._
-
-## Key findings
-
-> _Populated in Phase 4._
-
-## Limitations
-
-- ETF proxies begin between 1993 and 2008; the **full** universe shares a common sample from ~2008, with a longer-history **core** subset from ~2004. Pre-inception history is unavailable.
-- Macro regimes are anchored on **US** inflation/growth as the global cycle driver; non-US sleeves inherit this classification.
-- Some sleeves (per-country government bonds across the curve, infrastructure) lack clean long-history USD ETFs; proxies and gaps are documented, not hidden.
-- Regime detection uses **lagged** macro releases to avoid look-ahead, reflecting real publication delays.
-
-## Future research
-
-> _Populated in Phase 4._
+See [`reports/report.md`](reports/report.md) for the complete treatment, all figures, and the implementation framework.
 
 ---
 
-## License
+## Data sources
 
-MIT — see [LICENSE](LICENSE).
+| Domain | Source |
+|---|---|
+| Asset prices (total return) | FMP `historical-price-eod/dividend-adjusted` |
+| Macro (CPI, IP, GDP, unemployment, fed funds) | FMP `economic-indicators` |
+| Treasury curve | FMP `treasury-rates` |
+| VIX, FX | FMP EOD / forex |
 
-## Disclaimer
+## Limitations (summary)
 
-This is a research and educational project. Nothing here is investment advice. ETF proxies are used to represent asset classes and differ from the underlying indices in fees, tracking and currency treatment.
+ETF proxies span 1993–2026 (full universe from 2005), covering four crises but only ~1.5 inflation regimes; regimes are US-anchored; ETF proxies differ from indices; per-country bond curves are incompletely represented (documented, not hidden); 60/40's strong showing is partly US-equity outperformance in this era. Full discussion in the report.
+
+## License & disclaimer
+
+MIT — see [LICENSE](LICENSE). Research/educational project; **not investment advice**. ETF proxies represent asset classes and differ from underlying indices in fees, tracking and currency treatment.
