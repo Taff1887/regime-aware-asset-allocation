@@ -1,0 +1,128 @@
+{
+  "assets": [
+    "SPY",
+    "EWA",
+    "EWU",
+    "IEV",
+    "EWJ",
+    "EEM",
+    "SHY",
+    "IEF",
+    "TLT",
+    "LQD",
+    "HYG",
+    "IGF",
+    "RWO",
+    "DBC",
+    "GLD"
+  ],
+  "sample_start": "2005-02-28",
+  "sample_end": "2026-06-30",
+  "sharpe": {
+    "60/40": 0.711,
+    "Equal-Weight": 0.471,
+    "Inverse-Vol": 0.487,
+    "ERC (Risk Parity)": 0.483,
+    "Min-Variance": 0.29,
+    "Max-Diversification": 0.461,
+    "Max-Sharpe (MVO)": 0.62,
+    "Regime ERC": 0.48,
+    "Regime Min-Variance": 0.294,
+    "Regime Max-Sharpe": 0.539,
+    "Regime Risk Overlay": 0.503
+  },
+  "max_drawdown": {
+    "60/40": -0.295,
+    "Equal-Weight": -0.339,
+    "Inverse-Vol": -0.24,
+    "ERC (Risk Parity)": -0.205,
+    "Min-Variance": -0.101,
+    "Max-Diversification": -0.128,
+    "Max-Sharpe (MVO)": -0.153,
+    "Regime ERC": -0.205,
+    "Regime Min-Variance": -0.101,
+    "Regime Max-Sharpe": -0.153,
+    "Regime Risk Overlay": -0.151
+  },
+  "ann_return": {
+    "60/40": 0.0813,
+    "Equal-Weight": 0.0625,
+    "Inverse-Vol": 0.0535,
+    "ERC (Risk Parity)": 0.0489,
+    "Min-Variance": 0.0273,
+    "Max-Diversification": 0.0393,
+    "Max-Sharpe (MVO)": 0.0565,
+    "Regime ERC": 0.0493,
+    "Regime Min-Variance": 0.0281,
+    "Regime Max-Sharpe": 0.0539,
+    "Regime Risk Overlay": 0.0461
+  },
+  "avg_turnover": {
+    "60/40": 0.0,
+    "Equal-Weight": 0.004,
+    "Inverse-Vol": 0.006,
+    "ERC (Risk Parity)": 0.011,
+    "Min-Variance": 0.016,
+    "Max-Diversification": 0.018,
+    "Max-Sharpe (MVO)": 0.034,
+    "Regime ERC": 0.024,
+    "Regime Min-Variance": 0.041,
+    "Regime Max-Sharpe": 0.096,
+    "Regime Risk Overlay": 0.025
+  },
+  "crisis_eqbond_during": {
+    "GFC 2007-09": -0.47,
+    "Euro Debt 2011": -0.69,
+    "China/Oil 2015-16": -0.45,
+    "COVID 2020": -0.54,
+    "Inflation Shock 2022": 0.13
+  },
+  "currency_hedging": {
+    "ann_return": {
+      "Unhedged": 0.076,
+      "50% Hedged": 0.078,
+      "Fully Hedged": 0.08
+    },
+    "ann_vol": {
+      "Unhedged": 0.153,
+      "50% Hedged": 0.138,
+      "Fully Hedged": 0.127
+    },
+    "sharpe": {
+      "Unhedged": 0.396,
+      "50% Hedged": 0.438,
+      "Fully Hedged": 0.473
+    },
+    "max_drawdown": {
+      "Unhedged": -0.564,
+      "50% Hedged": -0.53,
+      "Fully Hedged": -0.495
+    }
+  },
+  "validation_sharpe_diff": [
+    {
+      "A": "Regime Risk Overlay",
+      "B": "ERC (Risk Parity)",
+      "sharpe_diff": 0.019454632885842982,
+      "ci_low": -0.1957496579199191,
+      "ci_high": 0.22228070156948287,
+      "p_A_not_better": 0.4598
+    },
+    {
+      "A": "Regime Max-Sharpe",
+      "B": "Max-Sharpe (MVO)",
+      "sharpe_diff": -0.08027861051479979,
+      "ci_low": -0.22720823559323272,
+      "ci_high": 0.044170963721169965,
+      "p_A_not_better": 0.8986
+    },
+    {
+      "A": "Regime Risk Overlay",
+      "B": "60/40",
+      "sharpe_diff": -0.20772118410084806,
+      "ci_low": -0.5635124686211622,
+      "ci_high": 0.12953924909315634,
+      "p_A_not_better": 0.88
+    }
+  ]
+}

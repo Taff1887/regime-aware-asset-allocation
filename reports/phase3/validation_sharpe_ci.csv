@@ -1,0 +1,12 @@
+,sharpe,ci_low,ci_high
+60/40,0.711,0.259,1.221
+Equal-Weight,0.471,0.026,0.971
+Inverse-Vol,0.487,0.055,0.982
+ERC (Risk Parity),0.483,0.042,1.011
+Min-Variance,0.29,-0.093,0.843
+Max-Diversification,0.461,0.05,1.01
+Max-Sharpe (MVO),0.62,0.208,1.101
+Regime ERC,0.48,0.044,1.003
+Regime Min-Variance,0.294,-0.096,0.838
+Regime Max-Sharpe,0.539,0.126,1.014
+Regime Risk Overlay,0.503,0.097,0.985

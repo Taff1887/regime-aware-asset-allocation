@@ -1,0 +1,4 @@
+,ann_return,ann_vol,sharpe,max_drawdown
+Unhedged,0.0762,0.1529,0.3959,-0.5645
+50% Hedged,0.0783,0.1375,0.4379,-0.5301
+Fully Hedged,0.0795,0.1266,0.4733,-0.4945

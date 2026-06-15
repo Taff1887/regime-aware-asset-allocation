@@ -1,0 +1,6 @@
+crisis,avg_corr_pre,eqbond_pre,avg_corr_during,eqbond_during,avg_corr_post,eqbond_post
+GFC 2007-09,0.122,-0.383,0.129,-0.471,0.237,-0.309
+Euro Debt 2011,0.168,-0.522,0.126,-0.691,0.233,-0.386
+China/Oil 2015-16,0.213,-0.313,0.137,-0.455,0.251,-0.352
+COVID 2020,0.158,-0.495,0.278,-0.544,0.237,-0.236
+Inflation Shock 2022,0.265,-0.087,0.376,0.13,0.41,0.115

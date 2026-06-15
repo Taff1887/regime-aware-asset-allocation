@@ -1,0 +1,4 @@
+A,B,sharpe_diff,ci_low,ci_high,p_A_not_better
+Regime Risk Overlay,ERC (Risk Parity),0.019,-0.196,0.222,0.46
+Regime Max-Sharpe,Max-Sharpe (MVO),-0.08,-0.227,0.044,0.899
+Regime Risk Overlay,60/40,-0.208,-0.564,0.13,0.88

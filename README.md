@@ -13,10 +13,12 @@ This repository is an institutional-quality research project that answers that q
 This project is built and documented in phases. Current progress:
 
 - [x] **Phase 0** — Repository scaffold, configuration, cached FMP data client, macro + price pipeline
-- [ ] **Phase 1** — Simple four-quadrant regime analysis (return / vol / Sharpe / correlation by regime) — *go/no-go checkpoint*
-- [ ] **Phase 2** — Supplementary regimes (HMM, clustering, market-implied) + risk-factor decomposition
-- [ ] **Phase 3** — Portfolio construction, costed backtesting, crisis stress tests, currency hedging
-- [ ] **Phase 4** — Executive summary, full report, publication figures
+- [x] **Phase 1** — Simple four-quadrant regime analysis (return / vol / Sharpe / correlation by regime) — *go/no-go: relationships confirmed*
+- [x] **Phase 2** — Supplementary regimes (HMM, clustering, market-implied) + risk-factor decomposition
+- [x] **Phase 3** — Portfolio construction, costed backtesting, crisis stress tests, currency hedging, statistical validation
+- [ ] **Phase 4** — Executive summary, full institutional `report.md`, README rewrite, publication figures
+
+> **Note:** the README is being finalised in Phase 4 into a normal concise GitHub overview, with all detailed findings moving to a standalone [`reports/report.md`](reports/). All analysis uses **real historical data only** (FMP); no simulated or synthetic data is used anywhere.
 
 *(Headline results tables below are populated as each phase completes.)*
 
